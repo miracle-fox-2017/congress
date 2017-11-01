@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <title>
+        Voter
+    </title>
+
+    <!-- <script type="text/javascript" src="style.js"></script> -->
+    <script>
+        function searchingChoice(menu) {
+            if (menu.value == 'name') {
+                document.getElementById('searchByName').style.display = "block"
+                document.getElementById('searchByGender').style.display = "none"
+                document.getElementById('searchByAge').style.display = "none"
+            } else if (menu.value == 'gender') {
+                document.getElementById('searchByName').style.display = "none"
+                document.getElementById('searchByGender').style.display = "block"
+                document.getElementById('searchByAge').style.display = "none"
+            } else if (menu.value == 'age') {
+                document.getElementById('searchByName').style.display = "none"
+                document.getElementById('searchByGender').style.display = "none"
+                document.getElementById('searchByAge').style.display = "block"
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <h2 style="color:red">
+            <%= message%>
+        </h2>
+    </header>
+    <div class="menu">
+        <a href="/">Home</a>
+        <a href="/results/top5">
+                    Top 5
+                </a>
+        <a href="/voters"> Voters </a>
+        <a href="/results/analyzed">
+                    Analisa Kecurangan
+                </a>
+    </div>
+    <br>
+    <form action="/voters" method="POST">
+        <select name="choice" id="choice" onchange="searchingChoice(this)">
+                    <option value="">----Select----</option>
+                    <option value="name">Name</option>
+                    <option value="gender">Gender</option>
+                    <option value="age">Age</option>>
+                    
+     </select>
+        <br>
+        <div id="searchByName" style="display : none">
+            <input name="name" type="text" placeholder="Search Name" />
+        </div>
+        <div id="searchByGender" style="display : none">
+            <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+           </select>
+        </div>
+        <div id="searchByAge" style="display : none">
+            <input type="text" name="minAge" placeholder="Range Min Age" />
+            <input type="text" name="maxAge" placeholder="Range Max Age" />
+        </div>
+        </select>
+
+        <br>
+        <input type="submit" value="SEARCH" /> </form>
+
+    <div class="main-table">
+
+        <% if(dataVoters.length > 0) {%>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Married</th>
+                    <th>Children Count</th>
+                </tr>
+                <%dataVoters.forEach((voter)=>{%>
+                    <tr>
+                        <td>
+                            <%= voter.id%>
+                        </td>
+                        <td>
+                            <%= voter.first_name%>
+                        </td>
+                        <td>
+                            <%= voter.last_name%>
+                        </td>
+                        <td>
+                            <%= voter.gender%>
+                        </td>
+                        <td>
+                            <%= voter.age%>
+                        </td>
+                        <% if(voter.married == 1){%>
+                            <td>
+                                Married
+                            </td>
+                            <% } else { %>
+                                <td>
+                                    Single / Widow
+                                </td>
+                                <%}%>
+                                    <td>
+                                        <%= voter.children_count%>
+                                    </td>
+                    </tr>
+                    <%})%>
+            </table>
+            <%}%>
+
+    </div>
+</body>
+
+</html>

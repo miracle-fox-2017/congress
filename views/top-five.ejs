@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>
+        Top Five
+    </title>
+
+</head>
+
+<body>
+
+    <div class="menu">
+        <a href="/">Home</a>
+        <a href="/results/top5">
+                    Top 5
+                </a>
+        <a href="/voters"> Voters </a>
+        <a href="/results/analyzed">
+                    Analisa Kecurangan
+                </a>
+    </div>
+    <br>
+    <div class="main-table">
+        <table border="1">
+            <tr>
+                <th>Total Vote</th>
+                <th>Politician</th>
+                <th>Voters</th>
+            </tr>
+            <%dataFive.forEach((five)=>{%>
+                <tr>
+
+                    <td>
+                        <%= five.total %>
+                    </td>
+                    <td>
+                        <%= five.name %>
+                    </td>
+                    <td>
+                        <ol>
+                            <% five.name_voters.forEach((voter)=>{%>
+                                <li>
+                                    <%= voter%>
+                                </li>
+                                <% })%>
+
+                        </ol>
+
+                    </td>
+                </tr>
+                <% })%>
+        </table>
+    </div>
+</body>
+
+</html>
