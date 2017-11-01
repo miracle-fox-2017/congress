@@ -12,21 +12,38 @@ router.post('/voters', function (req, res) {
         name: req.body.name
     }
     if (req.body.get == 1){
-        Vote.findName(set).then((dataName) => {
-            // let set = { name : "name" };
-            let isEdit = { isEdit: true };
-            res.render('voters', { dataName, isEdit });
-        }).catch((err) => {
+        if (set.name == ''){
+            res.redirect('voters');
+        }else{
+            Vote.findName(set).then((dataName) => {
+                // let set = { name : "name" };
+                let isEdit = { isEdit: true };
+                res.render('voters', { dataName, isEdit });
+            }).catch((err) => {
 
-        })
+            })
+        }
+        
     } else if (req.body.get == 2){
-        Vote.findGender(set).then((dataName) => {
-            // let set = { name : "name" };
-            let isEdit = { isEdit: true };
-            res.render('voters', { dataName, isEdit });
-        }).catch((err) => {
+        if (set.name==0){
+            res.redirect('voters');
+        } else if (set.name == 1){
+            Vote.findGender(set).then((dataName) => {
+                // let set = { name : "name" };
+                let isEdit = { isEdit: true };
+                res.render('voters', { dataName, isEdit });
+            }).catch((err) => {
 
-        })
+            })
+        } else if (set.name == 2){
+            Vote.findGender(set).then((dataName) => {
+                // let set = { name : "name" };
+                let isEdit = { isEdit: true };
+                res.render('voters', { dataName, isEdit });
+            }).catch((err) => {
+
+            })
+        }
     }
     
 });

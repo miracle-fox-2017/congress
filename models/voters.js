@@ -17,7 +17,13 @@ class Voters{
     }
 
     static findGender(obj) {
-        let query = `SELECT * FROM voters WHERE gender = "${obj.name}"`;
+        let gender = '';
+        if (obj.name == 1){
+            gender = "male";
+        }else{
+            gender = "female";
+        }
+        let query = `SELECT * FROM voters WHERE gender = "${gender}"`;
         return new Promise((resolve, reject) => {
             db.all(query, (err, dataTop) => {
                 if (!err) {
