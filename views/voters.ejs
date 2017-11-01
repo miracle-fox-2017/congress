@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    h2{
+      text-align: center;
+    }
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    padding: 20px
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    }
+  form{
+    text-align: center;
+    padding: 20px
+  }
+    </style>
+  </head>
+  <body>
+    <%if (error.length != 0){%>
+      <h2><%=error[0]%></h2>
+      <%}%>
+    <form action="/voters" method="post">
+      <select id='searchBy' name="searchBy" onchange="myFunction(this)">
+        <option value="default">----SELECT----</option>
+        <option value="name">Name</option>
+        <option value="gender">Gender</option>
+        <option value="age">Age</option>
+      </select>
+      <br>
+
+      <div id="searchName" style="display: none;">
+        <input type="text" name="searchName" placeholder="Search Name">
+      </div>
+
+      <div id="searchGender" style="display: none;">
+        <select name="searchGender">
+          <option value="default">----SELECT----</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <div id="searchAge" style="display: none;">
+        <input type="text" name="searchStartAge" placeholder="Range Min Age">
+        <input type="text" name="searchEndAge" placeholder="Range Max Age">
+      </div>
+
+      <br>
+      <div>
+        <button type="submit">SEARCH</button>
+      </div>
+    </form>
+
+    <br><br>
+
+      <%if (head != 0){ %>
+        <table border="2">
+      <thead>
+        <tr>
+          <td><%=head.id%></td>
+          <td><%=head.name%></td>
+          <td><%=head.lastname%></td>
+          <td><%=head.gender%></td>
+          <td><%=head.age%></td>
+          <td><%=head.married%></td>
+          <td><%=head.children%></td>
+        </tr>
+      </thead>
+      <%rowsVoters.forEach(dt=>{%>
+
+
+          <tr>
+            <td><%=dt.id%></td>
+            <td><%=dt.first_name%></td>
+            <td><%=dt.last_name%></td>
+            <td><%=dt.gender%></td>
+            <td><%=dt.age%></td>
+            <%if (dt.married == 0) {%>
+            <td>Single / Widow</td>
+            <%}%>
+            <%if (dt.married == 1){%>
+              <td>Married</td>
+              <%}%>
+            <td><%=dt.children_count%></td>
+          </tr>
+
+
+      <%})%>
+      </table>
+<%}%>
+    <script>
+      function myFunction(self) {
+          if(self.value === 'name') {
+            document.getElementById('searchName').style.display = "block";
+            document.getElementById('searchGender').style.display = "none";
+            document.getElementById('searchAge').style.display = "none";
+          } else if(self.value === 'gender') {
+            document.getElementById('searchGender').style.display = "block";
+            document.getElementById('searchName').style.display = "none";
+            document.getElementById('searchAge').style.display = "none";
+          } else if(self.value === 'age') {
+            document.getElementById('searchAge').style.display = "block";
+            document.getElementById('searchName').style.display = "none";
+            document.getElementById('searchGender').style.display = "none";
+          }
+      }
+    </script>
+  </body>
+</html>

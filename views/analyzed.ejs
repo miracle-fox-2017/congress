@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>analyzed Voting</title>
+    <style media="screen">
+      h2{
+        text-align: center;
+      }
+      table {
+      border-collapse: collapse;
+      width: 100%;
+      padding: 20px
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      }
+    form{
+      text-align: center;
+      padding: 20px
+    }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h3><a href="/">back</a></h3>
+    </div>
+<div class="">
+  <h2>There are <%=count%> persons who voted more than one</h2>
+</div>
+
+    <table border="2">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Gender</td>
+          <td>Age</td>
+          <td>Number Of Vote</td>
+        </tr>
+      </thead>
+      <% rows.forEach(dt=>{ %>
+        <tr>
+          <td><%=dt.name%></td>
+          <td><%=dt.gender%></td>
+          <td><%=dt.age%></td>
+          <td><%=dt.Number%></td>
+        </tr>
+      <%})%>
+    </table>
+  </body>
+</html>
