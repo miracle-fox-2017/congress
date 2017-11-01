@@ -7,6 +7,21 @@
     <title>Top 5 Results</title>
   </head>
   <body>
-    /results/top5
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate Name</th>
+          <th>Total Votes</th>
+          <th>Voter Name</th>
+        </tr>
+      </thead>
+      <% top5.forEach(top => { %>
+        <tr>
+          <td align="center"><%= top.candidate_name %></td>
+          <td align="center"><%= top.total_votes %></td>
+          <td align="center"><%= top.full_name %></td>
+        </tr>
+      <% }) %>
+    </table>
   </body>
 </html>
