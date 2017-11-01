@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Top 5</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <td><th>Total Vote</th></td>
+        <td><th>Politician</th></td>
+        <td><th>Voters</th></td>
+      </thead>
+      <tbody>
+        <%for (let i = 0; i < candidatesObj.length; i++) { %>
+          <tr>
+          <td><%=candidatesObj[i].numVotes%></td>
+          <td><%=candidatesObj[i].candidate%></td>
+          <td><%=candidatesObj[i].voters%></td>
+          </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </body>
+</html>
