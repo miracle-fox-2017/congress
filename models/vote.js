@@ -1,5 +1,5 @@
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('./db/congress_poll_results.db');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./db/congress_poll_results.db');
 
 class Vote {
   static top5() {
@@ -12,6 +12,25 @@ class Vote {
       GROUP BY politician.name
       ORDER BY TotalVote DESC
       LIMIT 5`, (err, rows) => {
+        if(err) {
+          reject(err)
+        } else (
+          resolve(rows)
+        )
+      })
+    })
+  }
+
+  static analyzed() {
+    return new Promise((resolve, reject) => {
+      // query with subquery
+      db.all(`SELECT voters.first_name || ' ' || voters.last_name AS Name, voters.gender, voters.age, VoterCount
+      FROM voters
+      INNER JOIN (SELECT COUNT(votes.voter_id) AS VoterCount, votes.voter_id
+                  FROM votes
+                  GROUP BY votes.voter_id
+                  HAVING COUNT(votes.voter_id) > 1) AS Voting ON Voting.voter_id = voters.id
+      ORDER BY Name, VoterCount DESC`, (err, rows) => {
         if(err) {
           reject(err)
         } else (

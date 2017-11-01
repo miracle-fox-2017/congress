@@ -6,8 +6,17 @@ const router = express.Router()
 // define the result page route
 router.get('/top5', function (req, res) {
   Vote.top5().then(dataTop5 => {
-    // res.send(dataTop5[0].VoterName.split(','))
-    res.render('resultTop5', {dataTop5: dataTop5})
+    res.render('top5', {dataTop5: dataTop5})
+  }).catch(error => {
+    res.send(error)
+  })
+})
+
+router.get('/analyzed', function (req, res) {
+  Vote.analyzed().then(dataAnalyzed => {
+    res.render('analyzed', {dataAnalyzed: dataAnalyzed})
+  }).catch(error => {
+    res.send(error)
   })
 })
 

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 // require router
 const index = require('./routers/index')
 const result = require('./routers/result')
+const voter = require('./routers/voter')
 
 // invoke express
 const app = express()
@@ -19,6 +20,7 @@ app.use(bodyParser.json())
 // routing
 app.use('/', index)
 app.use('/results', result)
+app.use('/voters', voter)
 
 // port
 app.listen(3000, function () {
