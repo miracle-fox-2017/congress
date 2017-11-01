@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TOP5</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Votes Count</th>
+        <th>Congressman/Congress Woman</th>
+        <th>Voters</th>
+      </tr>
+      <!-- <%console.log(rows)%> -->
+      <%for (let i=0;i<rows.length;i++){%>
+        <tr>
+          <td><%=rows[i].C%></td>
+          <td><%=rows[i].name%></td>
+          <td><ol>
+              <% for(let i =0; i<rows[i].first_name.length;i++) { %>
+                <li><%=rows[i].first_name%></li>
+                <%}%>
+          </ol></td>
+        </tr>
+      <%}%>
+    </table>
+
+
+  </body>
+</html>

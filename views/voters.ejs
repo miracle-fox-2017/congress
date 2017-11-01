@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Voters</title>
+  </head>
+  <body>
+    <form action="/voters" method="post">
+          <select id='searchBy' name="searchBy" onchange="myFunction(this)">
+            <option value="default">----SELECT----</option>
+            <option value="name">Name</option>
+            <option value="gender">Gender</option>
+            <option value="age">Age</option>
+          </select>
+          <br>
+
+          <div id="searchName" style="display: none;">
+            <input type="text" name="searchName" placeholder="Search Name">
+          </div>
+
+          <div id="searchGender" style="display: none;">
+            <select name="searchGender">
+              <option value="default">----SELECT----</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div id="searchAge" style="display: none;">
+            <input type="text" name="searchStartAge" placeholder="Range Min Age">
+            <input type="text" name="searchEndAge" placeholder="Range Max Age">
+          </div>
+
+          <br>
+          <div>
+            <button type="submit">SEARCH</button>
+          </div>
+        </form>
+
+        <br><br>
+
+
+
+        <script>
+          function myFunction(self) {
+              if(self.value === 'name') {
+                document.getElementById('searchName').style.display = "block";
+                document.getElementById('searchGender').style.display = "none";
+                document.getElementById('searchAge').style.display = "none";
+              } else if(self.value === 'gender') {
+                document.getElementById('searchGender').style.display = "block";
+                document.getElementById('searchName').style.display = "none";
+                document.getElementById('searchAge').style.display = "none";
+              } else if(self.value === 'age') {
+                document.getElementById('searchAge').style.display = "block";
+                document.getElementById('searchName').style.display = "none";
+                document.getElementById('searchGender').style.display = "none";
+              }
+          }
+        </script>
+    </form>
+    <% for(let i=0;i<rowVoters.length;i++){ %>
+    <tr>
+      <td><%=rowVoters[i].id%></td>
+      <td><%=rowVoters[i].first_name%></td>
+      <td><%=rowVoters[i].last_name%></td>
+      <td><%=rowVoters[i].gender%></td>
+      <td><%=rowVoters[i].age%></td>
+      <td><%=rowVoters[i].married%></td>
+      <td><%=rowVoters[i].children_count%></td>
+    </tr>
+      <%}%>
+  </body>
+</html>
