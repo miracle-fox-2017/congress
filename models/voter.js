@@ -3,14 +3,16 @@ const db = require('../db/koneksi.js')
 class Voter{
 
 	static search(search){
+		console.log(search)
 		let obj = {
 			isNull : true
 		}
 
 		return new Promise((resolve, reject)=> {
-			if(search.searchGender == 'default'){
-				reject('please fill the blank')
+			if(search.searchName[0] == 'default' && search.searchGender == 'default'){
+				reject('Please fill the blank')
 			}
+
 			else if(search.searchGender != 'default'){
 				this.findGender(search.searchGender).then(gender=> {
 					if(gender.length != 0){
@@ -35,8 +37,9 @@ class Voter{
 					}
 				})
 			}
-			else{
-				this.findName(search).then(name => {
+			
+			else if(search.searchName[1] == '' || search.searchName[0].length >= 0 ){
+				this.findName(search.searchName[1]).then(name => {
 					if(name.length != 0){
 						obj.isNull = false
 						obj.data = name
@@ -47,12 +50,13 @@ class Voter{
 					}
 				})
 			}
+			
 		})
 		
 	}
 
 	static findName(find){
-		let search = `SELECT id, first_name, last_name, gender, age, married, children_count FROM voters WHERE first_name like '%${find.searchName}%' OR last_name like '%${find.searchName}%'`
+		let search = `SELECT id, first_name, last_name, gender, age, married, children_count FROM voters WHERE first_name like '%${find}%' OR last_name like '%${find}%'`
 		
 		return new Promise((resolve, reject) => {
 			db.all(search, (err, rows) =>{

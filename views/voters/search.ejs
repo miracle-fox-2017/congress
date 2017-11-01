@@ -10,7 +10,7 @@
 
 <form action="/voters" method="post">
 	<label for="sel1">Search</label>
-	  <select class="form-control" id="mySelect" onchange="myFunction(this)" style="width:150px;">
+	  <select class="form-control" name="searchName" onchange="myFunction(this)" style="width:150px;">
 	  	<option value="default">----SELECT----</option>
 	    <option value="name">Name</option>
 	    <option value="gender">Gender</option>
@@ -64,7 +64,7 @@
 			        <td><%=name.last_name%></td>
 			        <td><%=name.gender%></td>
 			        <td><%=name.age%></td>
-			        <td><%=name.married%></td>
+			        <td><%=name.married == 0 ? 'Single' : 'Married'%></td>
 			        <td><%=name.children_count%></td>
 			      </tr>
 			    <%})%>
