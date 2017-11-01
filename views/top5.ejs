@@ -6,6 +6,25 @@
   </head>
   <body>
     <% include ./partials/menu %>
-
+    <table style="width:100%">
+      <tr>
+        <th>Total Vote</th>
+        <th>Politician</th>
+        <th>Voters</th>
+      </tr>
+      <%dataTop5.forEach(nameofTop=>{%>
+        <tr>
+          <td><%=nameofTop.totalvote%></td>
+          <td><%=nameofTop.politician%></td>
+          <td>
+            <ol>
+            <%nameofTop.nameVoters.forEach(nameVoter=>{%>
+                <li><%=nameVoter%></li>
+            <%})%>
+            </ol>
+          </td>
+        </tr>
+      <%})%>
+    </table>
   </body>
 </html>
