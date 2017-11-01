@@ -36,14 +36,14 @@
           <a class="button button-primary" href="/result/analyzed">Analisa Kecurangan</a>
           <div class="row">
             <div class="four columns">
-              <span style="color:red;"><%=err%></span>
-              <select class="u-full-width" id="test" name="form_select" onchange="showDiv(this)">
-                <option value ="0" selected >-select-</option>
-                <option value ="1">Name</option>
-                <option value ="2">Gender</option>
-                <option value ="3">Age</option>
-              </select>
+              <label style="color:red;"><%=err%></label>
               <form action="/voters" method="post">
+                <select class="u-full-width" id="test" name="form_select" onchange="showDiv(this)">
+                  <option value ="0" selected >-select-</option>
+                  <option value ="1">Name</option>
+                  <option value ="2">Gender</option>
+                  <option value ="3">Age</option>
+                </select>
                 <div id="name-hide" style="display: none;">
                   <input type="text" name="name" placeholder="Search Name">
                 </div>

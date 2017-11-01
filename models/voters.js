@@ -4,10 +4,7 @@ const db = new sqlite3.Database('./db/congress_poll_results.db');
 class Voter {
 
   static search(input,cb) {
-    if(!input.name && !input.gender && !input.min_age && !input.max_age){
-      cb(null,'Please fill all required field!!')
-    }
-    if(input.name){
+    if(input.form_select == 1){
       Voter.searchName(input.name).then(name => {
         if(name.length == 0){
           cb(null, 'name not found!!')
@@ -16,17 +13,29 @@ class Voter {
         }
       })
     }
-    if(input.gender){
-      Voter.searchGender(input.gender).then(gender => {
-        cb(gender)
-      })
+    if(input.form_select == 2){
+      if(!input.gender){
+        console.log(input);
+        cb(null,'Please fill all required field!!')
+      }else{
+        Voter.searchGender(input.gender).then(gender => {
+          cb(gender)
+        })
+      }
     }
-    if(input.min_age || input.max_age){
-      Voter.searchAge(input).then(age => {
-        cb(age)
-      }).catch(err => {
-        cb(null, err)
-      })
+    if(input.form_select == 3){
+      if(!input.max_age && !input.min_age){
+        cb(null,'Please fill all required field!!')
+      }else{
+        Voter.searchAge(input).then(age => {
+          cb(age)
+        }).catch(err => {
+          cb(null, err)
+        })
+      }
+    }
+    if(input.form_select == 0){
+      cb(null,'Please fill all required field!!')
     }
   }
 
