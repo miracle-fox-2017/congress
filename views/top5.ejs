@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>top5</title>
+  </head>
+  <body>
+    <table border="1">
+        <tr>
+          <th>Total vote</th>
+          <th>politician</th>
+          <th>voters</th>
+        </tr>
+      <tbody>
+          <%for(var i = 0; i < name.length;i++){%>
+          <tr>
+              <td><%= hasil[i]%></td>
+              <td> <%= name[i]%> </td>
+              <td> <%= jumlah%></td>
+          </tr>
+           <%}%>
+
+
+
+      </tbody>
+
+    </table>
+
+
+  </body>
+</html>
