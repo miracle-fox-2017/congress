@@ -5,6 +5,23 @@
     <title>Analyzed</title>
   </head>
   <body>
+    <%= console.log(hasil) %>
     <a href="/">Back</a>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Number of votes</th>
+      </tr>
+      <% for(let i = 0; i < hasil.length; i++){ %>
+      <tr>
+        <td><%= hasil[i].Name %></td>
+        <td><%= hasil[i].gender %></td>
+        <td><%= hasil[i].age %></td>
+        <td><%= hasil[i].Number_of_votes %></td>
+      </tr>
+      <% } %>
+    </table>
   </body>
 </html>
