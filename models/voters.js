@@ -23,12 +23,11 @@ class Voter {
     }
     else {
       db.all(`SELECT * FROM voters WHERE age BETWEEN '${body.bawah}' AND '${body.atas}'`, (err, data) => {
+        console.log(err);
         callback(err, data)
       })
     }
   }
-
-
 }
 
 module.exports = Voter
