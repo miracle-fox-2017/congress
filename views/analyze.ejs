@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% if(msg){ %>
+    <h1><%= msg %></h1>
+    <% } %>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Number of Votes</th>
+      </tr>
+      <% data.forEach(d=>{ %>
+        <tr>
+          <td><%= d.fullname %></td>
+          <td><%= d.gender %></td>
+          <td><%= d.age %></td>
+          <td><%= d.counts %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
