@@ -39,6 +39,8 @@ router.post("/",(req,res)=>{
                 }).catch((err)=>{
                     res.send(err);
                 });
+            }else if(req.body.minAge === "" && req.body.maxAge !== ""){ // Jika hanya mengisi maxAge
+                res.render("voters",{alert:"Harap isi salah satu kolom (Min Age)!",data:[]});
             }else if(req.body.minAge !== "" && req.body.maxAge !== ""){ // Jika kedua kolom tidak kosong
                 if(req.body.minAge > req.body.maxAge){
                     res.render("voters",{alert:"Usia min tidak bisa melebihi usia max!",data:[]});
