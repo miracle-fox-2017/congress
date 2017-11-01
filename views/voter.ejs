@@ -54,7 +54,11 @@
 					<td><%=voter.last_name%></td>
 					<td><%=voter.gender%></td>
 					<td><%=voter.age%></td>
-					<td><%=voter.married%></td>
+					<%if(voter.married === 1){%>
+						<td>Married</td>
+					<%}else{%>
+						<td>Single / Widow</td>
+					<%}%>
 					<td><%=voter.children_count%></td>
 				</tr>
 			<%})%>
