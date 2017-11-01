@@ -1,0 +1,85 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<%=message%>
+	<form action="/voters" method="post">
+		<select id="mySelect" name="mySelect" onchange="myFunction(this)">
+			<option value="select">--SELECT--</option>
+  			<option value="name">Name</option>
+  			<option value="gender">Gender</option>
+  			<option value="age">Age</option>
+		</select>
+
+		<br>
+		<div id="name" style="display: none;">
+        	<input type="text" name="name" placeholder="Search Name">
+      	</div>
+
+      <div id="gender" style="display: none;">
+        <select name="gender">
+          <option value="gender">----SELECT----</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <div id="age" style="display: none;">
+        <input type="text" name="minAge" placeholder="Range Min Age">
+        <input type="text" name="maxAge" placeholder="Range Max Age">
+      </div>
+		<br>
+		<input type="submit" value="Search">
+	</form>
+
+	<%if(voters.length>0){%>
+		<table>
+			<thead>
+				<td>id</td>
+				<td>first_name</td>
+				<td>last_name</td>
+				<td>gender</td>
+				<td>age</td>
+				<td>maried</td>
+				<td>children_count</td>
+			</thead>
+			<tbody>
+			<%voters.forEach(voter=>{%>
+				<tr>
+					<td><%=voter.id%></td>
+					<td><%=voter.first_name%></td>
+					<td><%=voter.last_name%></td>
+					<td><%=voter.gender%></td>
+					<td><%=voter.age%></td>
+					<td><%=voter.married%></td>
+					<td><%=voter.children_count%></td>
+				</tr>
+			<%})%>
+			</tbody>
+		</table>
+	<%}%>
+
+	 <script>
+      function myFunction(self) {
+          if(self.value === 'name'){
+            document.getElementById('name').style.display = "block";
+            document.getElementById('gender').style.display = "none";
+            document.getElementById('age').style.display = "none";
+          }else 
+          	if(self.value === 'gender'){
+          		document.getElementById('name').style.display = "none";
+            	document.getElementById('gender').style.display = "block";
+            	document.getElementById('age').style.display = "none";
+          	}else 
+          		if(self.value === 'age'){
+            		document.getElementById('name').style.display = "none";
+            		document.getElementById('gender').style.display = "none";
+            		document.getElementById('age').style.display = "block";
+          		}
+      }
+    </script>
+</body>
+</html>
