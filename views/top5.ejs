@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table border>
+      <tr>
+        <th>total</th>
+        <th>politican</th>
+        <th>voters</th>
+      </tr>
+      <%for(let i = 0 ;i < names.length;i++){%>
+        <tr>
+          <td><%=votes[i]%></td>
+          <td><%=names[i]%></td>
+          <td>
+            <ol><%for(let j = 0;j< first[i].length; j++){%>
+              <li><%=first[i][j]%></li>
+
+          <%}%></ol></td>
+        </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
