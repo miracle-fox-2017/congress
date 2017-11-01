@@ -12,16 +12,18 @@ class Analize{
 		let search = 'SELECT * FROM CHEATING ORDER BY fullname ASC, count DESC'
 
 		return new Promise((resolve, reject) => {
-			db.run(create, (err)=>{
+			db.run(create, (err)=> {
 				if(err){
 					reject(err)
 				}
 				else{
-					db.all(search, (err, rows) => {
+
+					db.all(search, function(err, rows) {
 						if(err){
 							reject(err)
 						}
 						else{
+							
 							resolve(rows)
 						}
 					})
