@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>total vote</td>
+        <td>politician</td>
+        <td>voters</td>
+      </tr>
+      <%for(var i = 0; i < data.length; i++){%>
+      <tr>
+        <td><%=data[i].jumlah_vote%></td>
+        <td><%=data[i].name%></td>
+        <td>
+          <ol>
+            <%data[i].first_name.forEach((elemen) => {%>
+              <li><%=elemen%></li>
+            <%})%>
+          </ol>
+        </td>
+      </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
