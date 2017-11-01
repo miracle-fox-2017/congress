@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Voters</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hacktiv8</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/results/top5">TOP 5</a></li>
+        <li class="active"><a href="/voters">VOTERS</a></li>
+        <li><a href="/results/analyzed">ANALISA KECURANGAN</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="jumbotron text-center">
+    <h1>VOTERS</h1>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <form action="/voters" method="post">
+        <select id="searchBy" name="searchBy" onchange="myFunction(this)">
+          <option value="default">----SELECT----</option>
+          <option value="name">Name</option>
+          <option value="gender">Gender</option>
+          <option value="age">Age</option>
+        </select>
+        <br>
+
+        <div id="searchName" style="display: none;">
+          <input type="text" name="searchName" placeholder="Search Name">
+        </div>
+
+        <div id="searchGender" style="display: block;">
+          <select name="searchGender">
+            <option value="default">----SELECT----</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div id="searchAge" style="display: none;">
+          <input type="text" name="searchStartAge" placeholder="Range Min Age">
+          <input type="text" name="searchEndAge" placeholder="Range Max Age">
+        </div>
+
+        <br>
+        <div>
+          <button type="submit">SEARCH</button>
+        </div>
+      </form>
+    </table>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Married</th>
+          <th>Children</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%dataContacts.forEach (row=> {%>
+          <tr>
+            <td><%= row.id %></td>
+            <td><%= row.first_name %></td>
+            <td><%= row.last_name %></td>
+            <td><%= row.gender %></td>
+            <td><%= row.age %></td>
+            <%if(row.married == 1) {%>
+              <td>Married</td>
+              <%}else if(row.married == 0) {%>
+                <td>Single/Widow</td>
+                <%}%>
+                <td><%= row.children_count %></td>
+              </td>
+            </tr>
+            <%})%>
+          </tbody>
+        </table>
+      </div>
+      <script>
+      function myFunction(self) {
+        if (self.value === 'name') {
+          document.getElementById('searchName').style.display = "block";
+          document.getElementById('searchGender').style.display = "none";
+          document.getElementById('searchAge').style.display = "none";
+        } else if (self.value === 'gender') {
+          document.getElementById('searchGender').style.display = "block";
+          document.getElementById('searchName').style.display = "none";
+          document.getElementById('searchAge').style.display = "none";
+        } else if (self.value === 'age') {
+          document.getElementById('searchAge').style.display = "block";
+          document.getElementById('searchName').style.display = "none";
+          document.getElementById('searchGender').style.display = "none";
+        }
+      }
+      </script>
+    </body>
+    </html>

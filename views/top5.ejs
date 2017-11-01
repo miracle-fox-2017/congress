@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Top 5</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hacktiv8</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/">HOME</a></li>
+        <li class="active"><a href="/results/top5">TOP 5</a></li>
+        <li><a href="/voters">VOTERS</a></li>
+        <li><a href="/results/analyzed">ANALISA KECURANGAN</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>TOP 5</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Total Vote</th>
+            <th>Politician</th>
+            <th>Voters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%dataContacts.forEach (row=> {%>
+            <tr>
+              <td><%= row.TotalVote %></td>
+              <td><%= row.Politician %></td>
+              <td>
+                <ol>
+                  <%row.Voters.split(',').forEach(data => {%>
+                    <li><%= data %></li>
+                    <%})%>
+                  </ol>
+                </td>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </body>
+    </html>

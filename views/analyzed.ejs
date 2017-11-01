@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Analyzed</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Hacktiv8</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">HOME</a></li>
+      <li><a href="/results/top5">TOP 5</a></li>
+      <li><a href="/voters">VOTERS</a></li>
+      <li class="active"><a href="/analyzed">ANALISA KECURANGAN</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h2>There are <%=JSON.stringify(dataQty).match(/\d+/g)%> persons who voted more than one</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Number of Votes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%dataContacts.forEach (row=> {%>
+          <tr>
+            <td><%= row.FullName %></td>
+            <td><%= row.gender %></td>
+            <td><%= row.age %></td>
+            <td><%= row.number_of_votes %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>
