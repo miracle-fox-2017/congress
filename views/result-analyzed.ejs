@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+</head>
+<body>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/results/top5">Top 5</a>
+		<a href="/voters">Voters</a>
+		<a href="/results/analyzed">Analisa Kecurangan</a>
+	</nav>
+
+	<h1>There are <%= frauds.length %> numbers of Fraud / Vote more than one</h1>
+
+	<table border="1" width="100%">
+		<tr>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Age</th>
+			<th>Number of Votes</th>
+		</tr>
+
+		<% frauds.forEach( function(fraud, index) { %>
+			<tr>
+				<td><%= fraud.full_name %></td>
+				<td><%= fraud.gender %></td>
+				<td><%= fraud.age %></td>
+				<td><%= fraud.jumlahVote %></td>
+			</tr>
+		<% }); %>
+	</table>
+</body>
+</html>

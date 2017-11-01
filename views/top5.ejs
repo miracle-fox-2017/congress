@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Top 5</title>
+</head>
+<body>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/results/top5">Top 5</a>
+		<a href="/voters">Voters</a>
+		<a href="/results/analyzed">Analisa Kecurangan</a>
+	</nav>
+	<h2>TOP 5</h2>
+
+	<table width="100%" border="1">
+		<tr>
+			<th>Total Vote</th>
+			<th>Politician</th>
+			<th>Voters</th>
+		</tr>
+
+		<% top5.forEach( function(politician, index) {  %>
+		
+			<tr>
+				<td><%= politician.jumlah_vote_individu %></td>
+				<td><%= politician.name %></td>
+				<td>
+					<ol>
+						<% politician.voters.forEach(function(voter, index) { %>
+							<li><%= voter %></li>
+						<% }); %>	
+					</ol>
+				</td>
+			</tr>
+
+		<% }); %>
+	</table>
+</body>
+</html>

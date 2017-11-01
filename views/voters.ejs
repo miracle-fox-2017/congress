@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+</head>
+<style>
+	.search-area {
+		display: none;
+	}
+</style>
+<body>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/results/top5">Top 5</a>
+		<a href="/voters">Voters</a>
+		<a href="/results/analyzed">Analisa Kecurangan</a>
+	</nav>
+
+	<h1>Voters</h1>
+
+	 <form action="/voters" method="POST">
+	 	<select id='searchBy' name="searchBy" onchange="showSearch()">
+	 		<option value="">----SELECT----</option>
+	 		<option value="name">Name</option>
+	 		<option value="gender">Gender</option>
+	 		<option value="age">Age</option>
+	 	</select>
+		
+		<br><br>
+
+		 <div class="search-area" id="find-by-name">
+		 	<input type="text" name="searchName" placeholder="Search Name">
+		 </div>
+
+		 <div class="search-area" id="find-by-gender">
+		 	<select name="searchGender">
+		 		<option value="">----SELECT----</option>
+		 		<option value="male">Male</option>
+		 		<option value="female">Female</option>
+		 	</select>
+		 </div>
+
+		 <div class="search-area" id="find-by-age">
+		 	<input type="text" name="minAge" placeholder="Min Age">
+        	<input type="text" name="maxAge" placeholder="Max Age">
+		 </div>
+
+		 <button class="btn-search" id="btn-search">Cari</button>
+	 </form>
+	 
+	 <br>
+
+	<% if (typeof error !== 'undefined' && error !== null){ %>
+		<div class="error-message"><p style="color:red;"><%= error; %></p></div>
+	<% } %>
+
+	 
+	<br> 
+	<div class="search-results">
+		<% if (typeof foundByName !== 'undefined' && foundByName !== null) { %>
+			<table width="100%" border="1">
+				<tr>
+					<th>id</th>
+					<th>first_name</th>
+					<th>last_name</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>married</th>
+					<th>children_count</th>
+				</tr>
+				
+				<% foundByName.forEach( function(name, index) { %>
+				<tr>
+					<td><%= name.id %></td>
+					<td><%= name.first_name %></td>
+					<td><%= name.last_name %></td>
+					<td><%= name.gender %></td>
+					<td><%= name.age %></td>
+					<td><%= (name.married == '0' ? 'Lajang / Janda' : 'Nikah') %></td>
+					<td><%= name.children_count %></td>
+				</tr>
+				<% }); %>
+			</table>
+	
+		<% } %>
+
+		<% if (typeof foundByGender !== 'undefined' && foundByGender != null) { %>
+			<table width="100%" border="1">
+				<tr>
+					<th>id</th>
+					<th>first_name</th>
+					<th>last_name</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>married</th>
+					<th>children_count</th>
+				</tr>
+				
+				<% foundByGender.forEach( function(name, index) { %>
+				<tr>
+					<td><%= name.id %></td>
+					<td><%= name.first_name %></td>
+					<td><%= name.last_name %></td>
+					<td><%= name.gender %></td>
+					<td><%= name.age %></td>
+					<td><%= (name.married == '0' ? 'Nikah' : 'Lajang / Janda / Duda') %></td>
+					<td><%= name.children_count %></td>
+				</tr>
+				<% }); %>
+			</table>
+	
+		<% } %>
+
+		<% if (typeof foundByAge !== 'undefined' && foundByAge !== null) { %>
+			<table width="100%" border="1">
+				<tr>
+					<th>id</th>
+					<th>first_name</th>
+					<th>last_name</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>married</th>
+					<th>children_count</th>
+				</tr>
+				
+				<% foundByAge.forEach( function(name, index) { %>
+				<tr>
+					<td><%= name.id %></td>
+					<td><%= name.first_name %></td>
+					<td><%= name.last_name %></td>
+					<td><%= name.gender %></td>
+					<td><%= name.age %></td>
+					<td><%= (name.married == '0' ? 'Nikah' : 'Lajang / Janda / Duda') %></td>
+					<td><%= name.children_count %></td>
+				</tr>
+				<% }); %>
+			</table>
+	
+		<% } %>
+	</div>
+
+	 <script>
+	 	function showSearch() {
+	 		let dropdownSearch = document.getElementById('searchBy');
+	 		let nameArea = document.getElementById('find-by-name');
+	 		let genderArea = document.getElementById('find-by-gender');
+	 		let ageArea = document.getElementById('find-by-age');
+
+	 		if (dropdownSearch.value == "name") {
+		 		nameArea.style.display = "block";
+		 		genderArea.style.display = "none";
+		 		ageArea.style.display = "none";
+		 	} else if (dropdownSearch.value == "gender") {
+		 		genderArea.style.display = "block";
+		 		nameArea.style.display = "none";
+		 		ageArea.style.display = "none";
+		 	} else if (dropdownSearch.value == "age") {
+		 		ageArea.style.display = "block";
+		 		nameArea.style.display = "none";
+		 		genderArea.style.display = "none";
+		 		
+		 	}
+	 	}
+	 </script>
+</body>
+</html>
