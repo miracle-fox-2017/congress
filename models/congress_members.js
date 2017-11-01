@@ -15,18 +15,6 @@ class CongressMembers {
       });
 
     }
-    static getById(id){
-      return new Promise(function(resolve, reject) {
-        let query = `SELECT * FROM congress_members WHERE id = ${id}`
-        db.get(query, (err, data_congres)=>{
-          if(!err){
-            resolve(data_congres)
-          } else {
-            reject(err)
-          }
-        })
-      });
-    }
 
 }
 module.exports = CongressMembers;

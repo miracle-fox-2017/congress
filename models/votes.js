@@ -15,18 +15,6 @@ class Vote {
     });
 
   }
-  static getById(id){
-    return new Promise(function(resolve, reject) {
-      let query = `SELECT * FROM votes WHERE id = ${id}`
-      db.get(query, (err, data_votes)=>{
-        if(!err){
-          resolve(data_votes)
-        } else {
-          reject(err)
-        }
-      })
-    });
-  }
   static getTop5(){
     return new Promise(function(resolve, reject) {
       let subquery =
