@@ -3,7 +3,9 @@
   </head>
   <body>
     <% include ./partials/menu %>
-
+    <div class="notification is-danger">
+      <h1 class="title"><strong>There are <%=dataAnalized.length%> persons who voted more than one</strong></h1>
+    </div>
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr>
