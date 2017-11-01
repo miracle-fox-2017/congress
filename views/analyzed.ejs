@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <% include ./partial/head.ejs %>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="two-third column" style="margin-top: 10%; margin-bottom: 10%">
+          <h3><%=title%> | Congress</h3>
+          <a class="button button-primary" href="/">Home</a>
+          <a class="button button-primary" href="/result/top5">Top 5</a>
+          <a class="button button-primary" href="/voters">Voters</a>
+          <a class="button button-primary" href="/result/analyzed">Analisa Kecurangan</a>
+          <h5><b style="color:red;">There are <%=votes.length%> persons who voted more than one</b></h5>
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Number Of Votes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%votes.forEach(vote => {%>
+                <tr>
+                  <td><%=vote.fullname%></td>
+                  <td><%=vote.gender%></td>
+                  <td><%=vote.age%></td>
+                  <td><%=vote.count_votes%></td>
+                </tr>
+                <%})%>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

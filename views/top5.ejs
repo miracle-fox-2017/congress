@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <% include ./partial/head.ejs %>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="two-third column" style="margin-top: 10%; margin-bottom: 10%">
+          <h3><%=title%> | Congress</h3>
+          <a class="button button-primary" href="/">Home</a>
+          <a class="button button-primary" href="/result/top5">Top 5</a>
+          <a class="button button-primary" href="/voters">Voters</a>
+          <a class="button button-primary" href="/result/analyzed">Analisa Kecurangan</a>
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Total Vote</th>
+                <th>Politician</th>
+                <th>Voters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%votes.forEach(top => {%>
+                <tr>
+                  <td><%=top.total_votes%></td>
+                  <td><%=top.politician_name%></td>
+                  <td>
+                    <ol>
+                      <%votersArr = top.voters.split(',')
+                      votersArr.forEach((voter,i) => {%>
+                        <li><%=voter%></li>
+                      <%})%>
+                    </ol>
+                  </td>
+                </tr>
+              <%})%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
