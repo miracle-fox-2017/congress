@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#analisa {
+    margin-top: 70px;
+    margin-left: 20px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+#analisa td, #analisa th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#analisa tr:nth-child(even){background-color: #f2f2f2;}
+
+#analisa tr:hover {background-color: #ddd;}
+
+#analisa th {
+
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+<h1 style="font-family:sans-serif">Data Analize</h1>
+
+
+
+<h4 style="color:maroon; margin-left:50px" >Facts: there are <%=data.length%> persons who voted more than once</h4>
+
+ <table id="analisa">
+   <tr>
+
+     <th>Full Name</th>
+     <th>Gender</th>
+     <th>Age</th>
+     <th>Number of Votes</th>
+
+   </tr>
+
+
+
+   <%data.forEach(item =>{%>
+   <tr>
+
+     <td><%=item.FullName%></td>
+     <td><%=item.gender%></td>
+    <td><%=item.age%></td>
+     <td><%=item.number_of_votes%></td>
+
+     <%})%>
+
+   </tr>
+
+
+
+
+
+</table>
+
+</body>
+</html>
