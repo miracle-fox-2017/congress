@@ -15,7 +15,6 @@ class Voter {
     }
     if(input.form_select == 2){
       if(!input.gender){
-        console.log(input);
         cb(null,'Please fill all required field!!')
       }else{
         Voter.searchGender(input.gender).then(gender => {
