@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Top 5</title>
+  </head>
+  <body>
+    <%= console.log(hasil[0].name) %>
+    <a href="/">Back</a>
+    <table border="1">
+      <tr>
+        <th>Total Vote</th>
+        <th>Politician</th>
+        <th>Voters</th>
+      </tr>
+      <% for(let i = 0; i < hasil.length; i++){ %>
+      <tr>
+        <td><%= hasil[i].pantsu %></td>
+        <td><%= hasil[i].name %></td>
+        <td><%= hasil[i].jenenge %></td>
+      </tr>
+      <% } %>
+    </table>
+  </body>
+</html>
