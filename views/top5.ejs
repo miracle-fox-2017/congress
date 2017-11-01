@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Top%</title>
+    <style media="screen">
+      h2{
+        text-align: center;
+      }
+      table {
+      border-collapse: collapse;
+      width: 100%;
+      padding: 20px
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      }
+    form{
+      text-align: center;
+      padding: 20px
+    }
+    </style>
+  </head>
+  <body>
+    <h2>Top 5</h2>
+    <table border="2">
+      <thead>
+        <tr>
+          <td>TOTAL VOTE</td>
+          <td>POLITICIAN</td>
+          <td>VOTERS</td>
+        </tr>
+      </thead>
+      <%top5.forEach(dt=>{%>
+        <tr>
+          <td><%=dt.Total%></td>
+          <td><%=dt.Name%></td>
+        <td><ol>
+            <% for(let i =0; i<dt.first_name.length;i++) { %>
+            <li><%=dt.first_name[i]%></li>
+            <%}%>
+          </ol>
+
+        </td>
+        </tr>
+      <%})%>
+    </table>
+
+  </body>
+</html>
