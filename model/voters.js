@@ -17,7 +17,13 @@ class Voters {
 
 	static searchVoter(word){
 
-		let search = `SELECT * FROM voters WHERE first_name LIKE '%${word}%' `
+		let search = `SELECT id, first_name, last_name, gender, age, 
+					  CASE 
+					  WHEN married = 0 THEN 'Single/Widow' 
+					  WHEN married = 1 THEN 'Married' 
+					  END as married,
+					  children_count
+					  FROM voters WHERE first_name LIKE '%${word}%' `
 		return new Promise((resolve,require) => {
 			db.all(search, function(err,searchVoter){
 				if(err){
@@ -30,7 +36,13 @@ class Voters {
 	}
 
 	static searchGenderVoter(status){
-		let search = `SELECT * FROM voters WHERE gender = "${status}"`
+		let search = `SELECT id, first_name, last_name, gender, age, 
+					  CASE 
+					  WHEN married = 0 THEN 'Single/Widow' 
+					  WHEN married = 1 THEN 'Married' 
+					  END as married,
+					  children_count
+					  FROM voters WHERE gender = "${status}"`
 		return new Promise((resolve,require) => {
 			db.all(search, function(err, searchGender){
 				if(err){
@@ -43,7 +55,13 @@ class Voters {
 	}
 
 	static searchAgeVoter(minAge,maxAge){
-		let search = `SELECT * FROM voters WHERE age BETWEEN ${minAge} AND ${maxAge}`
+		let search = `SELECT id, first_name, last_name, gender, age, 
+					  CASE 
+					  WHEN married = 0 THEN 'Single/Widow' 
+					  WHEN married = 1 THEN 'Married' 
+					  END as married,
+					  children_count
+					  FROM voters WHERE age BETWEEN ${minAge} AND ${maxAge}`
 		return new Promise((resolve,reject)=> {
 			db.all(search, function(err,searchAge){
 				if(err){
@@ -56,7 +74,13 @@ class Voters {
 	}
 
 	static searchMinAge(minAge){
-		let search = `SELECT * FROM voters WHERE age = ${minAge}`
+		let search = `SELECT id, first_name, last_name, gender, age, 
+					  CASE 
+					  WHEN married = 0 THEN 'Single/Widow' 
+					  WHEN married = 1 THEN 'Married' 
+					  END as married,
+					  children_count
+					  FROM voters WHERE age = ${minAge}`
 		return new Promise((resolve,reject)=> {
 			db.all(search, function(err,searchAge){
 				if(err){
