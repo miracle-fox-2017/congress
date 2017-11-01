@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Top 5 Congressman</title>
+    <style media="screen">
+        td {
+            padding: 5px;
+        }
+        li {
+            list-style: decimal;
+        }
+    </style>
+</head>
+<body>
+    <a href="/">Back</a>
+    <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>Total Vote</td>
+            <td>Politican</td>
+            <td>Voters</td>
+        </tr>
+        <%politikus.map((value,i)=>{%>
+        <tr>
+            <td><%=jumlahPemilih[i]%></td>
+            <td><%=value%></td>
+            <td>
+            <%pemilih[i].map((voters)=>{%>
+            <li><%=voters%></li>
+            <%})%>
+            </td>
+        </tr>
+        <%})%>
+    </table>
+</body>
+<script type="text/javascript">
+console.log("Barang siapa melihat tanpa ijin (kecuali instruktur) sama saja perbuatan mencuri!");
+</script>
+</html>
+<!-- Barang siapa melihat tanpa ijin (kecuali instruktur) sama saja perbuatan mencuri! -->

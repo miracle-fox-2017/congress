@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Voters</title>
+    <style media="screen">
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+    h1 {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <%if(alert.length !== 0){%>
+        <h1><%=alert%></h1>
+    <%}%>
+    <select id="selection">
+        <option>----SELECT----</option>
+        <option value="name">Name</option>
+        <option value="gender">Gender</option>
+        <option value="age">Age</option>
+    </select>
+    <form action="/voters" method="post">
+        <input type="hidden" name="type" id="search-type" value="">
+        <div id="search-name" class="search-box" style="display: none;">
+            <input type="text" name="name" placeholder="Ketik nama yang di inginkan">
+        </div>
+        <div id="search-gender" class="search-box" style="display: none;">
+            <select name="gender">
+                <option value="">--GENDER--</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div id="search-age" class="search-box" style="display: none;">
+            <input type="number" name="minAge" placeholder="Min Age">
+            <input type="number" name="maxAge" placeholder="Max Age">
+        </div>
+        <input type="submit" value="Search">
+    </form>
+    <%if(alert.length === 0 && data.length !== 0){%>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Gender</td>
+                <td>Age</td>
+                <td>Married</td>
+                <td>Children</td>
+            </tr>
+            <%data.map((value)=>{%>
+            <tr>
+                <td><%=value.id%></td>
+                <td><%=value.first_name%></td>
+                <td><%=value.last_name%></td>
+                <td><%=value.gender%></td>
+                <td><%=value.age%></td>
+                <td><%=value.married === 0 ? 'Single' : 'Married'%></td>
+                <td><%=value.children_count%></td>
+            </tr>
+            <%})%>
+        </table>
+    <%}%>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    console.log("Barang siapa melihat tanpa ijin (kecuali instruktur) sama saja perbuatan mencuri!");
+    $(this).on("change","#selection",function(event){
+        event.preventDefault();
+        switch($(this).val()){
+            case "name":
+                $("#search-type").val("name");
+                $(".search-box").slideUp(500);
+                $("#search-name").slideDown(500);
+                break;
+            case "gender":
+                $("#search-type").val("gender");
+                $(".search-box").slideUp(500);
+                $("#search-gender").slideDown(500);
+                break;
+            case "age":
+                $("#search-type").val("age");
+                $(".search-box").slideUp(500);
+                $("#search-age").slideDown(500);
+                break;
+            default:
+                $("#search-type").val("");
+                $(".search-box").slideUp(500);
+        }
+    });
+});
+</script>
+</html>
+<!-- Barang siapa melihat tanpa ijin (kecuali instruktur) sama saja perbuatan mencuri! -->

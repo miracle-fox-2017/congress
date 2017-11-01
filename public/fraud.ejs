@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Analisa Pemilihan Ganda</title>
+</head>
+<body>
+    <table border="1">
+        <h1>There are <%=rows.length%> persons who voted more than one</h1>
+        <tr>
+            <td>Name</td>
+            <td>Gender</td>
+            <td>Age</td>
+            <td>Number of Votes</td>
+        </tr>
+        <%rows.map((value)=>{%>
+        <tr>
+            <td><%=value.name%></td>
+            <td><%=value.gender%></td>
+            <td><%=value.age%></td>
+            <td><%=value.hitung%></td>
+        </tr>
+        <%})%>
+    </table>
+</body>
+<script type="text/javascript">
+console.log("Barang siapa melihat tanpa ijin (kecuali instruktur) sama saja perbuatan mencuri!");
+</script>
+</html>
+<!-- Barang siapa melihat tanpa ijin (kecuali instruktur) sama saja perbuatan mencuri! -->
