@@ -1,0 +1,30 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Top 5</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<td>Total Vote</td>
+			<td>Politician</td>
+			<td>Voters</td>
+		</thead>
+		<tbody>
+			<%poli.forEach(result=>{%>
+			<tr>
+				<td><%=result.nilai%></td>
+				<td><%=result.name%></td>
+				<td>
+					<%result.voter.forEach(voters=>{%>
+						<li><%=voters%></li>
+					<%})%>
+				</td>
+			</tr>
+			<%})%>
+		</tbody>
+	</table>
+
+</body>
+</html>
