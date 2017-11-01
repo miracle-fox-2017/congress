@@ -92,8 +92,8 @@ class VoterModel {
 								(
 									select count(voter_id) 
 									from votes where voter_id = voters.id
-								) as jumlahVote
-						from voters  where jumlahVote > 1 order by jumlahVote ASC;`;
+								) as jumlahVote 
+							from voters where jumlahVote > 1 order by jumlahVote ASC;`;
 			db.run(sql, (err, rows) => {
 				if (err) {
 					reject(err);
