@@ -9,13 +9,27 @@ router.get('/', function (req, res) {
 })
 
 router.post('/', function (req, res) {
-  console.log(req.body);
-  if(!req.body.searchGender && !req.body.minAge && !req.body.maxAge) {
+  if(!req.body.searchGender && !req.body.searchName && !req.body.minAge && !req.body.maxAge) {
     res.render('voter', {error: true, dataVoter: false})
-  } else {
-    // console.log('--> masuk query');
-    Voter.search(req.body).then(dataVoter => {
+  }
+
+  if(req.body.searchName) {
+    Voter.searchName(req.body.searchName).then(dataVoter => {
       res.render('voter', {error: false, dataVoter: dataVoter})
+    })
+  }
+
+  if(req.body.searchGender) {
+    Voter.searchGender(req.body.searchGender).then(dataVoter => {
+      res.render('voter', {error: false, dataVoter: dataVoter})
+    })
+  }
+
+  if(req.body.maxAge || req.body.minAge) {
+    Voter.searchAge(req.body).then(dataVoter => {
+      res.render('voter', {error: false, dataVoter: dataVoter})
+    }).catch(error => {
+      res.render('voter', {error: true, dataVoter: false})
     })
   }
 })
