@@ -64,7 +64,7 @@ class Voter {
       db.all(`${query} '${start}' and '${start}' `, (err, rows) =>{
         resolve(rows)
       })
-    }else if (start == '' && end !== '' ) {
+    }else  {
       resolve(this.error())
     }
 
