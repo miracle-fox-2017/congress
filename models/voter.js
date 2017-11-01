@@ -9,7 +9,13 @@ class Voter{
 		}
 
 		return new Promise((resolve, reject)=> {
-			if(search.searchName[0] == 'default' && search.searchGender == 'default'){
+			if(search.searchName[0] == 'default'){
+				reject('Please fill the blank')
+			}
+			else if(search.searchName[0] == 'gender' && search.searchGender == 'default'){
+				reject('Please fill the blank')
+			}
+			else if(search.searchName[0] == 'age' && search.searchAge[0] == ''){
 				reject('Please fill the blank')
 			}
 
