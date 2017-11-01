@@ -11,5 +11,15 @@ router.get('/top5', function (req, res) {
       })
 })
 
+router.get('/analyzed', (req, res)=>{
+  Votes.getAnalyzed()
+    .then(dataAnalized=>{
+      res.render('analyzed', {dataAnalized:dataAnalized})
+    })
+      .catch(err=>{
+        res.send(err)
+      })
+})
+
 
 module.exports = router

@@ -91,5 +91,29 @@ class Vote {
               })
       });
     }
+
+    static getAnalyzed(){
+      return new Promise(function(resolve, reject) {
+        let query = `
+        SELECT
+        VR.first_name,
+        VR.last_name,
+        VR.gender,
+        VR.age,
+        V.voting
+        FROM analized AS V
+        LEFT JOIN voters AS VR
+        ON VR.id = V.voter_id
+        WHERE V.voting > 1 `
+        db.all(query, (err, dataAnalized)=>{
+          if(!err){
+            resolve(dataAnalized)
+          } else {
+            reject(err)
+          }
+        })
+      });
+    }
+
 }
 module.exports = Vote;
