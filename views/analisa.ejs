@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Selamat Datang Di CONGRESS</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="/"> HOME</a></li>
+        <li><a href="/results/top5"> TOP 5</a></li>
+        <li><a href="/voters"> VOTERS</a></li>
+        <li><a href="/results/analyzed"> ANALISA KECURANGAN</a></li>
+    </ul>
+    <h2>There are <%= getData.length %> person who voted more than one</h2>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Gender</td>
+            <td>Age</td>
+            <td>Number Of Votes</td>
+        </tr>
+        <% getData.forEach((row)=>{ %>
+            <tr>
+                <td>
+                    <%= row.name %>
+                </td>
+                <td>
+                    <%= row.gender %>
+                </td>
+                <td>
+                    <%= row.age %>
+                </td>
+                <td>
+                    <%= row.Number %>
+                </td>
+            </tr>
+            <% }) %>
+                <tr></tr>
+    </table>
+</body>
+
+</html>
