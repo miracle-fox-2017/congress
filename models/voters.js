@@ -1,29 +1,35 @@
-const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('./db/congress_poll_results.db')
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./db/congress_poll_results.db', err => {
+  if (err) console.error(err);
+});
 
-class Voter{
-
-  static findbyName(requestbody,callback){
-    db.all(`SELECT *
-      FROM voters WHERE voters.first_name
-      LIKE "%${requestbody.first_name}%"`,function(err,rowVoters){
-        if(err){
-          callback(err,null);
-        }else{
-          callback(null,rowVoters)
-        }
-      })
+class Voters {
+  static findbyName(name) {
+    return new Promise ((resolve, reject) => {
+      db.all(`SELECT * FROM voters WHERE first_name LIKE '%${name}%' ORDER BY first_name`, (err, rows) => {
+        if(err) reject(err);
+        resolve(rows);
+      });
+    });
   }
-  // static findbyAge(){
-  //
-  // }
-  // static findbyGender(){
-  //
-  // }
 
+  static findByGender(gender){
+    return new Promise ((resolve, reject) => {
+      db.all(`SELECT * FROM voters WHERE gender = '${gender}' ORDER BY id`, (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      });
+    });
+  }
 
-
-
+ static findByAge(start, end) {
+    return new Promise ((resolve, reject) => {
+      db.all(`SELECT * FROM voters WHERE age BETWEEN ${start} AND ${end} ORDER BY age`, (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      });
+    });
+  }
 }
 
-module.exports = Voter
+module.exports = Voters;

@@ -1,74 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Voters</title>
   </head>
   <body>
+    <% if (error.length !== 0) { %>
+      <h2><%= error[0] %></h2>
+    <% } %>
+
     <form action="/voters" method="post">
-          <select id='searchBy' name="searchBy" onchange="myFunction(this)">
-            <option value="default">----SELECT----</option>
-            <option value="name">Name</option>
-            <option value="gender">Gender</option>
-            <option value="age">Age</option>
-          </select>
-          <br>
+      <select id='searchBy' name="searchBy" onchange="check(this)">
+        <option value="default">----SELECT----</option>
+        <option value="name">Name</option>
+        <option value="gender">Gender</option>
+        <option value="age">Age</option>
+      </select>
 
-          <div id="searchName" style="display: none;">
-            <input type="text" name="searchName" placeholder="Search Name">
-          </div>
+      <br/>
 
-          <div id="searchGender" style="display: none;">
-            <select name="searchGender">
-              <option value="default">----SELECT----</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
+      <div id="searchName" style="display: none;">
+        <input type="text" name="searchName" placeholder="Search Name">
+      </div>
 
-          <div id="searchAge" style="display: none;">
-            <input type="text" name="searchStartAge" placeholder="Range Min Age">
-            <input type="text" name="searchEndAge" placeholder="Range Max Age">
-          </div>
+      <div id="searchGender" style="display: none;">
+        <select name="searchGender">
+          <option value="default">----SELECT----</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
 
-          <br>
-          <div>
-            <button type="submit">SEARCH</button>
-          </div>
-        </form>
+      <div id="searchAge" style="display: none;">
+        <input type="text" name="searchStartAge" placeholder="Range Min Age">
+        <input type="text" name="searchEndAge" placeholder="Range Max Age">
+      </div>
 
-        <br><br>
+      <br/>
 
-
-
-        <script>
-          function myFunction(self) {
-              if(self.value === 'name') {
-                document.getElementById('searchName').style.display = "block";
-                document.getElementById('searchGender').style.display = "none";
-                document.getElementById('searchAge').style.display = "none";
-              } else if(self.value === 'gender') {
-                document.getElementById('searchGender').style.display = "block";
-                document.getElementById('searchName').style.display = "none";
-                document.getElementById('searchAge').style.display = "none";
-              } else if(self.value === 'age') {
-                document.getElementById('searchAge').style.display = "block";
-                document.getElementById('searchName').style.display = "none";
-                document.getElementById('searchGender').style.display = "none";
-              }
-          }
-        </script>
+      <div>
+        <button type="submit">SEARCH</button>
+      </div>
     </form>
-    <% for(let i=0;i<rowVoters.length;i++){ %>
-    <tr>
-      <td><%=rowVoters[i].id%></td>
-      <td><%=rowVoters[i].first_name%></td>
-      <td><%=rowVoters[i].last_name%></td>
-      <td><%=rowVoters[i].gender%></td>
-      <td><%=rowVoters[i].age%></td>
-      <td><%=rowVoters[i].married%></td>
-      <td><%=rowVoters[i].children_count%></td>
-    </tr>
-      <%}%>
+
+    <br/>
+    <br/>
+
+    <%if (head !== 0){ %>
+      <table>
+        <thead>
+          <tr>
+            <td><%=head.id%></td>
+            <td><%=head.name%></td>
+            <td><%=head.lastname%></td>
+            <td><%=head.gender%></td>
+            <td><%=head.age%></td>
+            <td><%=head.married%></td>
+            <td><%=head.children%></td>
+          </tr>
+        </thead>
+        <%rowsVoters.forEach(value => { %>
+          <tr>
+            <td><%=value.id%></td>
+            <td><%=value.first_name%></td>
+            <td><%=value.last_name%></td>
+            <td><%=value.gender%></td>
+            <td><%=value.age%></td>
+            <%if (value.married == 0) {%>
+              <td>Single / Widow</td>
+            <% } %>
+            <% if (value.married == 1) { %>
+              <td>Married</td>
+              <% } %>
+            <td><%= value.children_count %></td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+
+    <script>
+      function check(self) {
+          if(self.value === 'name') {
+            document.getElementById('searchName').style.display = "block";
+            document.getElementById('searchGender').style.display = "none";
+            document.getElementById('searchAge').style.display = "none";
+          } else if(self.value === 'gender') {
+            document.getElementById('searchGender').style.display = "block";
+            document.getElementById('searchName').style.display = "none";
+            document.getElementById('searchAge').style.display = "none";
+          } else if(self.value === 'age') {
+            document.getElementById('searchAge').style.display = "block";
+            document.getElementById('searchName').style.display = "none";
+            document.getElementById('searchGender').style.display = "none";
+          }
+      }
+    </script>
   </body>
 </html>

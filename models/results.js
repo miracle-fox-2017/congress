@@ -25,8 +25,25 @@ class Result{
         }
       })
   }
-
+ static getAnalyzed(){
+  return new Promise((resolve, reject) => {
+    db.all(`
+      SELECT voters.first_name || ' ' || voters.last_name AS name, voters.gender, voters.age, COUNT(votes.voter_id) AS Number
+      FROM votes
+      INNER JOIN voters ON voters.id = votes.voter_id
+      GROUP BY votes.voter_id
+      HAVING COUNT(votes.voter_id) > 1
+      ORDER BY name ASC
+    `, (err, rows) => {
+      if (err) reject(err);
+      console.log(rows);
+      resolve(rows);
+    });
+  })
+}
 
 }
+
+
 
 module.exports = Result

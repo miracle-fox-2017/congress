@@ -11,11 +11,16 @@ router.get('/top5',function(req,res){
   })
 })
 
-router.get('/analyzed',function(req,res){
 
+
+router.get('/analyzed', (req, res) => {
+  Result.getAnalyzed()
+  .then(rows => {
+    res.render('analyzed', { cheating: rows });
+  }).catch(err => {
+    console.error(err);
+  });
 })
-
-
 
 
 module.exports = router
