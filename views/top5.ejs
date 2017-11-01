@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/css/bulma.min.css" type="text/css">
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+  <title>Congress - Top 5</title>
+</head>
+<body>
+
+  <% include assets/partial/top-nav %>
+
+  <div class="container" style="z-index: -2;">
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <thead>
+        <tr>
+          <th style="text-align:center;"><abbr title="totalVote">TOTAL VOTE</abbr></th>
+          <th style="text-align:center;">POLITICIAN</th>
+          <th style="text-align:center; width:350px;">VOTERS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%=data_top5[0].count_votes%></td>
+          <td><%=data_top5[0].name%></td>
+          <td>
+            <%for(let i=0; i<dataTop1.length; i++){%>
+            <li style="margin:2px; padding:3px;"><%=dataTop1[i]%></li>
+            <%}%>
+          </td>
+        </tr>
+        <tr>
+          <td><%=data_top5[1].count_votes%></td>
+          <td><%=data_top5[1].name%></td>
+          <td>
+            <%for(let j=0; j<dataTop2.length; j++){%>
+            <li style="margin:2px; padding:3px;"><%=dataTop2[j]%></li>
+            <%}%>
+          </td>
+        </tr>
+        <tr>
+          <td><%=data_top5[2].count_votes%></td>
+          <td><%=data_top5[2].name%></td>
+          <td>
+            <%for(let k=0; k<dataTop3.length; k++){%>
+            <li style="margin:2px; padding:3px;"><%=dataTop3[k]%></li>
+            <%}%>
+          </td>
+        </tr>
+        <tr>
+          <td><%=data_top5[3].count_votes%></td>
+          <td><%=data_top5[3].name%></td>
+          <td>
+            <%for(let l=0; l<dataTop4.length; l++){%>
+            <li style="margin:2px; padding:3px;"><%=dataTop4[l]%></li>
+            <%}%>
+          </td>
+        </tr>
+        <tr>
+          <td><%=data_top5[4].count_votes%></td>
+          <td><%=data_top5[4].name%></td>
+          <td>
+            <%for(let m=0; m<dataTop4.length; m++){%>
+            <li style="margin:2px; padding:3px;"><%=dataTop5_1[m]%></li>
+            <%}%>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
