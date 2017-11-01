@@ -17,8 +17,17 @@ router.post('/', function(req, res){
     })
   }else{
   Voter.validate(req).then(data =>{
+
     Voter.convert(data).then(dataVoters =>{
-        res.render('voters',{dataVoters, err:null})
+
+      if(dataVoters.length == null){
+        Voter.error().then(err =>{
+          res.render('voters', {dataVoters:null, err:err})
+        })
+      }else{
+        res.render('voters',{dataVoters:dataVoters, err:null})
+      }
+
     })
   })
   }

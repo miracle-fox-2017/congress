@@ -6,6 +6,7 @@ class Voter {
 
 
   static findAll (){
+
     return new Promise ((resolve, reject) =>{
     db.all(`SELECT * FROM voters `, (err, rows) =>{
       if(err){
@@ -21,8 +22,7 @@ class Voter {
 
     return new Promise ((resolve, reject) =>{
 
-      console.log(keyword);
-      db.all(`SELECT * FROM voters Where first_name LIKE '${keyword}%'`, (err, rows) =>{
+      db.run(`SELECT * FROM voters Where first_name LIKE '${keyword}%'`, (err, rows) =>{
         if(err){
           reject(err)
         }else{
@@ -37,9 +37,10 @@ class Voter {
   static searchGender(keyword){
 
     return new Promise ((resolve, reject) =>{
+
       db.all(`SELECT * FROM voters Where gender LIKE '${keyword}'`, (err, rows) =>{
         if(err){
-          reject(err)
+          resolve(err)
         }else{
           resolve(rows)
         }
@@ -63,8 +64,8 @@ class Voter {
       db.all(`${query} '${start}' and '${start}' `, (err, rows) =>{
         resolve(rows)
       })
-    }else {
-      resolve(null)
+    }else if (start == '' && end !== '' ) {
+      resolve(this.error())
     }
 
     })
@@ -99,10 +100,12 @@ class Voter {
       if (req.body.searchBy == 'age') {
         resolve(this.searchAge(req))
       }
-      else if(req.body.searchName !== '' ){
-        resolve(this.searchName(req.body.searchName))
+      else if(req.body.searchName){
+          resolve(this.searchName(req.body.searchName))
       }
-
+      else if(req.body.searchGender == 'default'){
+        resolve(this.error())
+      }
       else if(req.body.searchGender !== 'default'){
         resolve(this.searchGender(req.body.searchGender))
       }
