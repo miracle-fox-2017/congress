@@ -40,11 +40,15 @@ router.post("/",(req,res)=>{
                     res.send(err);
                 });
             }else if(req.body.minAge !== "" && req.body.maxAge !== ""){ // Jika kedua kolom tidak kosong
-                Voters.searchBetweenAge(req.body.minAge,req.body.maxAge).then((rows)=>{
-                    res.render("voters",{alert:"",data:rows});
-                }).catch((err)=>{
-                    res.send(err);
-                });
+                if(req.body.minAge > req.body.maxAge){
+                    res.render("voters",{alert:"Usia min tidak bisa melebihi usia max!",data:[]});
+                }else{
+                    Voters.searchBetweenAge(req.body.minAge,req.body.maxAge).then((rows)=>{
+                        res.render("voters",{alert:"",data:rows});
+                    }).catch((err)=>{
+                        res.send(err);
+                    });
+                }
             }
             break;
         default:
