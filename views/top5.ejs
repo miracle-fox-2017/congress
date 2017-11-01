@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+		<a href="/">Back</a>
+	</nav>
+	<table border="1px">
+		<tr>
+			<th>Total Vote</th>
+			<th>Politician</th>
+			<th>Voters</th>
+		</tr>
+		<%for(let j = 0; j < nama.length; j++){%>
+			<%let row = 1%>
+			<tr>
+			<td><%=jumlahTotal[j]%></td>
+			<td><%=nama[j]%></td>
+			  <td><%for(let k = 0; k < getHasil[j].length; k++){%>
+					<%=row%>.<%=getHasil[j][k]%><br>
+					<%row++%>
+					<%}%>
+			  <%}%></td>
+		  </tr>	
+	</table>	
+
+</body>
+</html>
