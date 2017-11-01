@@ -32,7 +32,7 @@ router.post('/', function (req, res) {
                 res.send(reason)
             })
         } else if (req.body.maxAge < req.body.minAge) {
-            res.render('voter', { dataVoters: '', message: 'Maximum age must be more than minimum age' })
+            res.render('voter', { dataVoters: '', message: 'Maximum age should be more than minimum age' })
         } else {
             Voter.findDatabyAge(req.body.minAge, req.body.maxAge).then((dataVoters) => {
                 res.render('voter', { dataVoters: dataVoters, message: '' })

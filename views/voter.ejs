@@ -4,6 +4,7 @@
     <title>
         Voter
     </title>
+
     <!-- <script type="text/javascript" src="style.js"></script> -->
     <script>
         function searchingChoice(menu) {
@@ -31,6 +32,17 @@
             <%= message%>
         </h2>
     </header>
+    <div class="menu">
+        <a href="/">Home</a>
+        <a href="/results/top5">
+                    Top 5
+                </a>
+        <a href="/voters"> Voters </a>
+        <a href="/results/analyzed">
+                    Analisa Kecurangan
+                </a>
+    </div>
+    <br>
     <form action="/voters" method="POST">
         <select name="choice" id="choice" onchange="searchingChoice(this)">
                     <option value="">----Select----</option>
@@ -61,7 +73,7 @@
     <div class="main-table">
 
         <% if(dataVoters.length > 0) {%>
-            <table>
+            <table border="1">
                 <tr>
                     <th>ID</th>
                     <th>First Name</th>
