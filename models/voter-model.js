@@ -87,18 +87,24 @@ class VoterModel {
 	static findAllElectionFraud() {
 		return new Promise((resolve, reject) => {
 			let db = new sqlite3.Database(dbName);
-			let sql =  `select voters.id, voters.gender, voters.age, voters.first_name || ' ' ||voters.last_name as full_name,
-							(
-								select  count(voter_id) 
-								from votes where voter_id = voters.id
-							) as jumlahVote
-					    from voters  where jumlahVote > 1 order by jumlahVote ASC;`;
-
-			db.all(sql, (err, rows) => {
+			let sql =  `CREATE VIEW IF NOT EXISTS fraud_people AS
+							select voters.id, voters.gender, voters.age, voters.first_name || ' ' ||voters.last_name as full_name,
+								(
+									select count(voter_id) 
+									from votes where voter_id = voters.id
+								) as jumlahVote
+						from voters  where jumlahVote > 1 order by jumlahVote ASC;`;
+			db.run(sql, (err, rows) => {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(rows);
+					db.all('SELECT * from fraud_people', (err, rows) => {
+						if (err) {
+							reject(err);
+						} else {
+							resolve(rows);
+						}
+					})
 				}
 			});
 		});

@@ -9,15 +9,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/top5', (req, res) => {
-	VoteModel.createTop5View()
-		.then((success) =>{
-			
-			VoteModel.findTop5()
-				.then((allTop5) => {
-					res.render('top5', {top5: congressModel.splitWinnerVoter(allTop5)});
-				})
-				.catch(err => res.send(err));
-
+	VoteModel.findTop5()
+		.then((allTop5) => {
+			res.render('top5', {top5: congressModel.splitWinnerVoter(allTop5)});
 		})
 		.catch(err => res.send(err));
 	
