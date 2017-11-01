@@ -7,6 +7,95 @@
     <title>Voters</title>
   </head>
   <body>
-    /voters
+    <% if (error.length !== 0) { %>
+      <h2><%= error[0] %></h2>
+    <% } %>
+
+    <form action="/voters" method="post">
+      <select id='searchBy' name="searchBy" onchange="check(this)">
+        <option value="default">----SELECT----</option>
+        <option value="name">Name</option>
+        <option value="gender">Gender</option>
+        <option value="age">Age</option>
+      </select>
+
+      <br/>
+
+      <div id="searchName" style="display: none;">
+        <input type="text" name="searchName" placeholder="Search Name">
+      </div>
+
+      <div id="searchGender" style="display: none;">
+        <select name="searchGender">
+          <option value="default">----SELECT----</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <div id="searchAge" style="display: none;">
+        <input type="text" name="searchStartAge" placeholder="Range Min Age">
+        <input type="text" name="searchEndAge" placeholder="Range Max Age">
+      </div>
+
+      <br/>
+
+      <div>
+        <button type="submit">SEARCH</button>
+      </div>
+    </form>
+
+    <br/>
+    <br/>
+
+    <%if (head !== 0){ %>
+      <table>
+        <thead>
+          <tr>
+            <td><%=head.id%></td>
+            <td><%=head.name%></td>
+            <td><%=head.lastname%></td>
+            <td><%=head.gender%></td>
+            <td><%=head.age%></td>
+            <td><%=head.married%></td>
+            <td><%=head.children%></td>
+          </tr>
+        </thead>
+        <%rowsVoters.forEach(value => { %>
+          <tr>
+            <td><%=value.id%></td>
+            <td><%=value.first_name%></td>
+            <td><%=value.last_name%></td>
+            <td><%=value.gender%></td>
+            <td><%=value.age%></td>
+            <%if (value.married == 0) {%>
+              <td>Single / Widow</td>
+            <% } %>
+            <% if (value.married == 1) { %>
+              <td>Married</td>
+              <% } %>
+            <td><%= value.children_count %></td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+
+    <script>
+      function check(self) {
+          if(self.value === 'name') {
+            document.getElementById('searchName').style.display = "block";
+            document.getElementById('searchGender').style.display = "none";
+            document.getElementById('searchAge').style.display = "none";
+          } else if(self.value === 'gender') {
+            document.getElementById('searchGender').style.display = "block";
+            document.getElementById('searchName').style.display = "none";
+            document.getElementById('searchAge').style.display = "none";
+          } else if(self.value === 'age') {
+            document.getElementById('searchAge').style.display = "block";
+            document.getElementById('searchName').style.display = "none";
+            document.getElementById('searchGender').style.display = "none";
+          }
+      }
+    </script>
   </body>
 </html>

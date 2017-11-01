@@ -6,7 +6,7 @@ const db = new sqlite3.Database('./db/congress_poll_results.db', err => {
 class Voters {
   static getTable(name) {
     return new Promise ((resolve, reject) => {
-      db.all(`SELECT * FROM voters WHERE first_name LIKE ‘%${name}%’ ORDER BY first_name`, (err, rows) => {
+      db.all(`SELECT * FROM voters WHERE first_name LIKE '%${name}%' ORDER BY first_name`, (err, rows) => {
         if(err) reject(err);
         resolve(rows);
       });
