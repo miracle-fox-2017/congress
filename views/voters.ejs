@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>R&P - Studio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+  <!-- Custome CSS -->
+  <link rel="stylesheet" href="assets/css/custom/style.css" type="text/css">
+
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div id="menu">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4 col-md-4 col-sm-12">
+            <div class="logo">
+              <a href="index.html">
+                <img src="assets/img/logo.png" alt="rnp-studio-logo" class="img-fluid">
+                <span><h2 class="studio">Studio</h2></span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-8 col-md-8 col-sm-12">
+            <nav>
+              <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/results/top5">Top 5</a></li>
+                <li><a href="/voters">Voters</a></li>
+                <li><a href="/results/analyzed">Analisa Kecurangan</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <div class="container" >
+    <div class="row" id="contacts">
+
+      <div class="col-md-12 col-xs-12" id="sub-title">
+        <h1 class="text-center">GROUPS</h1>
+      </div>
+
+      <div class="col-md-12 col-xs-12" id="add">
+        <% if (msg){ %>
+        <div class="alert alert-danger">
+          <%= msg %>
+        </div>
+        <%}%>
+        <form class="" action="" method="post">
+         <select id='pilihNama' name="pilihNama" onchange="pilihData(this)">
+           <option value="">----SELECT----</option>
+           <option value="name">Name</option>
+           <option value="gender">Gender</option>
+           <option value="age">Age</option>
+         </select>
+
+         <div id="dataName" style="display: none;">
+           <input type="text" name="dataName" placeholder="Search Name">
+         </div>
+
+         <div id="dataGender" style="display: none;">
+           <select name="dataGender">
+             <option value="">----SELECT----</option>
+             <option value="male">Male</option>
+             <option value="female">Female</option>
+           </select>
+         </div>
+
+         <div id="dataAge" style="display: none;">
+           <input type="text" name="minAge" placeholder="Range Min Age">
+           <input type="text" name="maxAge" placeholder="Range Max Age">
+         </div>
+
+         <div>
+           <input type="submit" class="btn btn-primary" name="submit" value="Seacrh">
+         </div>
+       </form>
+      </div>
+      <hr>
+      <div class="col-md-12 col-xs-12" id="show">
+        <% if (srcName != null){ %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">First Name</th>
+                <th class="text-center">Last Name</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Married</th>
+                <th class="text-center">Children Count</th>
+              </tr>
+            </thead>
+            <!-- tampilkan semua data contacts -->
+            <% srcName.forEach (data => { %>
+              <tbody>
+                <tr>
+                  <td class=""><%= data.id %></td>
+                  <td ><%= data.first_name %></td>
+                  <td ><%= data.last_name %></td>
+                  <td class="text-center"><%= data.gender %></td>
+                  <td class="text-center"><%= data.age %></td>
+                  <td class="text-center"><%= data.menikah %></td>
+                  <td class="text-center"><%= data.children_count %></td>
+                </tr>
+              </tbody>
+            <% }) %>
+
+          </table>
+        <% } else if (srcGender != null){ %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">First Name</th>
+                <th class="text-center">Last Name</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Married</th>
+                <th class="text-center">Children Count</th>
+              </tr>
+            </thead>
+            <!-- tampilkan semua data contacts -->
+            <% srcGender.forEach (data => { %>
+              <tbody>
+                <tr>
+                  <td class=""><%= data.id %></td>
+                  <td ><%= data.first_name %></td>
+                  <td ><%= data.last_name %></td>
+                  <td class="text-center"><%= data.gender %></td>
+                  <td class="text-center"><%= data.age %></td>
+                  <td class="text-center"><%= data.menikah %></td>
+                  <td class="text-center"><%= data.children_count %></td>
+                </tr>
+              </tbody>
+            <% }) %>
+
+          </table>
+        <% } else if (srcAge != null){ %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">First Name</th>
+                <th class="text-center">Last Name</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Married</th>
+                <th class="text-center">Children Count</th>
+              </tr>
+            </thead>
+            <!-- tampilkan semua data contacts -->
+            <% srcAge.forEach (data => { %>
+              <tbody>
+                <tr>
+                  <td class=""><%= data.id %></td>
+                  <td ><%= data.first_name %></td>
+                  <td ><%= data.last_name %></td>
+                  <td class="text-center"><%= data.gender %></td>
+                  <td class="text-center"><%= data.age %></td>
+                  <td class="text-center"><%= data.menikah %></td>
+                  <td class="text-center"><%= data.children_count %></td>
+                </tr>
+              </tbody>
+            <% }) %>
+
+          </table>
+        <%}%>
+      </div>
+    </div>
+  </div>
+  <section id="service">
+
+  </section>
+
+  <footer>
+    Copyright &copy 2017 - Riski Nugroho Putra
+  </footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script>
+    function pilihData(tampil) {
+        if(tampil.value === 'name') {
+          document.getElementById('dataName').style.display = "block";
+          document.getElementById('dataGender').style.display = "none";
+          document.getElementById('dataAge').style.display = "none";
+        } else if(tampil.value === 'gender') {
+          document.getElementById('dataGender').style.display = "block";
+          document.getElementById('dataName').style.display = "none";
+          document.getElementById('dataAge').style.display = "none";
+        } else if(tampil.value === 'age') {
+          document.getElementById('dataAge').style.display = "block";
+          document.getElementById('dataName').style.display = "none";
+          document.getElementById('dataGender').style.display = "none";
+        }
+    }
+  </script>
+</body>
+
+</html>
