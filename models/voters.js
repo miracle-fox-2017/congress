@@ -18,7 +18,12 @@ class Voters {
       
       //searchName
       else if(input.searchBy == 'name'){
-        let searchLike = `SELECT id, first_name, last_name, gender, age, married, children_count
+        let searchLike = `SELECT id, first_name, last_name, gender, age, 
+                          CASE 
+                             WHEN married = 0 THEN 'Single/Widow'
+                             WHEN married = 1 THEN 'Married'
+                          END as married,
+                          children_count
                           FROM voters
                           WHERE first_name LIKE '%${input.searchName}%'
                           ORDER BY first_name ASC`
@@ -49,10 +54,15 @@ class Voters {
           reject('please fill the blank')
         } else {
           //read db
-          let searchGender = `SELECT id, first_name, last_name, gender, age, married, children_count
+          let searchGender = `SELECT id, first_name, last_name, gender, age, 
+                            CASE 
+                               WHEN married = 0 THEN 'Single/Widow'
+                               WHEN married = 1 THEN 'Married'
+                            END as married,
+                            children_count
                             FROM voters
                             WHERE gender = '${input.searchGender}'
-                            ORDER BY first_name ASC`
+                            ORDER BY id ASC`
           db.all(searchGender, (err, rows)=>{
             // console.log(rows);
             if(err){
@@ -85,7 +95,12 @@ class Voters {
         } else {
           if(input.searchEndAge == ''){
             //ini cuma startnya aja
-            let querySearchAge = `SELECT id, first_name, last_name, gender, age, married, children_count
+            let querySearchAge = `SELECT id, first_name, last_name, gender, age, 
+                              CASE 
+                                 WHEN married = 0 THEN 'Single/Widow'
+                                 WHEN married = 1 THEN 'Married'
+                              END as married,
+                              children_count
                               FROM voters
                               WHERE age = '${input.searchStartAge}'
                               ORDER BY id ASC`
@@ -110,7 +125,12 @@ class Voters {
             })
           } else {
             //ini 2 2nya
-            let querySearchAge = `SELECT id, first_name, last_name, gender, age, married, children_count
+            let querySearchAge = `SELECT id, first_name, last_name, gender, age, 
+                              CASE 
+                                 WHEN married = 0 THEN 'Single/Widow'
+                                 WHEN married = 1 THEN 'Married'
+                              END as married,
+                              children_count
                               FROM voters
                               WHERE age >= '${input.searchStartAge}' AND age <= '${input.searchEndAge}'
                               ORDER BY age ASC, id ASC`
