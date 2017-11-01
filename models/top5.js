@@ -24,19 +24,6 @@ class top5 {
     return new Promise((resolve, reject) => {
       db.all(queryTop5, (err, rows) => {
         if (err) reject(err);
-        // const arrVotes = [];
-        // const arrVoters =  [];
-
-        // const uniqueName = [...new Set(rows.map(item => item.candidate_name))];
-        // console.log(unique);
-
-        // rows.forEach(value => {
-        //   if (arrNotName.indexOf(value.current_name) === -1) {
-        //     arrNotName.push(value.total_votes);
-        //     arrVoters.push([]);
-        //   }
-        // });
-        //{nama:a,total:32,pemilih:[b,a,c]},{nama}
 
         let temp=[]
         let j = 0
@@ -59,7 +46,6 @@ class top5 {
             }
           }
         }
-        console.log(temp);
 
         resolve(temp);
       });

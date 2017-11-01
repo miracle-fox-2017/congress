@@ -16,3 +16,6 @@ Tampilkan nama Politikus, jumlah suaranya dan orang-orang yang memilih politikus
 
 Requirement:
   * Query hanya boleh 1 (subquery / view)
+
+## Release 3
+Pada saat memilih menu Analisa Kecurangan, maka tampilkanlah list nama orang-orang yang melakukan vote lebih dari sekali dan infokan berapa total orang yang vote lebih dari sekali.
