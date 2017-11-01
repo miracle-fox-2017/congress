@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Selamat Datang Di CONGRESS</title>
+</head>
+<script>
+    function leaveChange() {
+        if (document.getElementById("pilih").value == "0") {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("name").style.display = "none";
+            document.getElementById("age").style.display = "none";
+            document.getElementById("name").style.display = "none";
+            document.getElementById("gender").style.display = "none";
+        }
+        else if (document.getElementById("pilih").value == "1") {
+            document.getElementById("name").style.display = "block";
+            document.getElementById("message").style.display = "none";
+            document.getElementById("age").style.display = "none";
+            document.getElementById("gender").style.display = "none";
+        } else if (document.getElementById("pilih").value == "2") {
+            document.getElementById("name").style.display = "none";
+            document.getElementById("gender").style.display = "block";
+            document.getElementById("message").style.display = "none";
+            document.getElementById("age").style.display = "none";
+        } else if (document.getElementById("pilih").value == "3") {
+            document.getElementById("message").style.display = "none";
+            document.getElementById("age").style.display = "block";
+            document.getElementById("name").style.display = "none";
+            document.getElementById("gender").style.display = "none";
+        }
+    }
+
+</script>
+<body>
+    <% if(err !== null){ %>
+        
+        <%= err.err %>
+        
+    <% } %>
+    <ul>
+        <li><a href="/"> HOME</a></li>
+        <li><a href="/results/top5"> TOP 5</a></li>
+        <li><a href="/voters"> VOTERS</a></li>
+        <li><a href="/results/analyzed"> ANALISA KECURANGAN</a></li>
+    </ul>
+    <select id="pilih" onchange="leaveChange()">
+        <option value="0">Pilih Bor</option>
+        <option value="1">Name</option>
+        <option value="2">Gender</option>
+        <option value="3">Age</option>
+    </select>
+    <form action="/voters" method="post" id="name" style="display: none;">
+        <input type="text" name="name">
+        <input type="hidden" name="get" value="1">
+        <input type="submit" value="kirim">
+    </form>
+    <form action="/voters" method="post" id="gender" style="display: none;">
+        <input type="hidden" name="get" value="2">
+        <select name="name">
+            <option value="0">Pilih</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+        </select>
+        <input type="submit" name="nama" value="kirim">
+    </form>
+    <form action="/voters" method="post" id="age" style="display: none;">
+        min <input type="text" name="nama"> max <input type="text" name="nama">
+        <input type="submit" value="kirim">
+    </form>
+    <% if(isEdit.isEdit == true){ %>
+    <div id="message" style="display: none;">Maaf Bro, Harus Dipilih</div>
+    <table border="1">
+        <tr>
+            <td>id</td>
+            <td>frist name</td>
+            <td>last_name</td>
+            <td>gender</td>
+            <td>age</td>
+            <td>married</td>
+            <td>children</td>
+        </tr>
+        <% 
+        dataName.forEach((data)=>{
+        %>
+
+        <tr>
+            <td><%= data.id %></td>
+            <td><%= data.first_name %></td>
+            <td><%= data.last_name %></td>
+            <td><%= data.gender %></td>
+            <td><%= data.age %></td>
+            <td><%= data.married %></td>
+            <td><%= data.children_count %></td>
+        </tr>
+
+        <%
+        })
+        %>
+    </table>
+    <% } %>
+</body>
+
+</html>

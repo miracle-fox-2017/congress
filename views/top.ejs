@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TOP 5</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="/"> HOME</a></li>
+        <li><a href="/results/top5"> TOP 5</a></li>
+        <li><a href="/voters"> VOTERS</a></li>
+        <li><a href="/results/analyzed"> ANALISA KECURANGAN</a></li>
+    </ul>
+    <table border="1">
+        <tr>
+            <td>Total Vote</td>
+            <td>Politician</td>
+            <td>Voters</td>
+        </tr>
+        <% getTotal.forEach((row,index)=>{ %>
+            <tr>
+                <td><%= row %></td>
+                <td><%= getName[index] %></td>
+                <td>
+                    <% getHasil[index].forEach((set,index)=>{ %>
+
+                        <%= index+1 %>. <%= set %><br />
+
+                    <% }) %>
+                    
+                </td>
+            </tr>
+        <% }) %>
+        <tr></tr>
+    </table>
+</body>
+
+</html>
