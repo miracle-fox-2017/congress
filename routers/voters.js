@@ -13,14 +13,25 @@ router.post('/', (req, res) => {
     })
   }
   else if(req.body.opsi == 2) {
-    Voter.findByGender(req.body, (err, voter) => {
-      res.render('voters', {data: voter, pesan: ""})
-    })
+    if(req.body.gender == "") {
+      res.render('voters', {data: '', pesan: 'please fill the blank'})
+    }
+    else {
+      Voter.findByGender(req.body, (err, voter) => {
+        res.render('voters', {data: voter, pesan: ""})
+      })
+    }
   }
+
   else if(req.body.opsi == 3) {
-    Voter.findByAge(req.body, (err, voter) => {
-      res.render('voters', {data: voter, pesan: ""})
-    })
+    if(req.body.bawah == "" && req.body.atas != "") {
+      res.render('voters', {data: '', pesan:"Range Start Age must be filled"})
+    }
+    else {
+      Voter.findByAge(req.body, (err, voter) => {
+        res.render('voters', {data: voter, pesan: ""})
+      })
+    }
   }
   else if(req.body.opsi == '') {
     res.render('voters', {data: '', pesan: "Please fill the blank"})
