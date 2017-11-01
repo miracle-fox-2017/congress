@@ -4,6 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Index</title>
 </head>
+<style>
+	.hideElement {
+		display: none;
+	}
+
+	.showElement {
+		display: block;
+	}
+
+	.result-area {
+		display: none;
+	}
+</style>
 <body>
 	<nav>
 		<a href="/">Home</a>
@@ -14,6 +27,49 @@
 
 	<h1>Voters</h1>
 
-	<%= JSON.stringify(voters); %>
+	 <form action="/voters">
+	 	<select id='searchBy' name="searchBy" onchange="showSearch()">
+	 		<option value="default">----SELECT----</option>
+	 		<option value="name">Name</option>
+	 		<option value="gender">Gender</option>
+	 		<option value="age">Age</option>
+	 	</select>
+	
+		 <div class="result-area" id="find-by-name">
+		 	<h2>Find By Name</h2>
+		 </div>
+
+		 <div class="result-area" id="find-by-gender">
+		 	<h2>Find by Gender</h2>
+		 </div>
+
+		 <div class="result-area" id="find-by-age">
+		 	<h2>Find by Age</h2>
+		 </div>
+	 </form>
+
+	 <script>
+	 	function showSearch() {
+	 		let dropdownSearch = document.getElementById('searchBy');
+	 		let nameArea = document.getElementById('find-by-name');
+	 		let genderArea = document.getElementById('find-by-gender');
+	 		let ageArea = document.getElementById('find-by-age');
+
+	 		if (dropdownSearch.value == "name") {
+		 		nameArea.style.display = "block";
+		 		genderArea.style.display = "none";
+		 		ageArea.style.display = "none";
+		 	} else if (dropdownSearch.value == "gender") {
+		 		genderArea.style.display = "block";
+		 		nameArea.style.display = "none";
+		 		ageArea.style.display = "none";
+		 	} else if (dropdownSearch.value == "age") {
+		 		ageArea.style.display = "block";
+		 		nameArea.style.display = "none";
+		 		genderArea.style.display = "none";
+		 		
+		 	}
+	 	}
+	 </script>
 </body>
 </html>

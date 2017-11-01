@@ -21,6 +21,21 @@ class VoterModel {
 			})	
 		});
 	}
+
+	static findByName(name) {
+		return new Promise((resolve, reject) => {
+			let db = new sqlite3.Database(dbName);
+			let sql = `SELECT * FROM voters WHERE first_name LIKE '%${name}%';`;
+
+			db.run(sql, (err, rows) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(rows);
+				}
+			})
+		});
+	}
 }
 
 module.exports = VoterModel;
