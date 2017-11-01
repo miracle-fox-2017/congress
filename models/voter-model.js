@@ -94,6 +94,7 @@ class VoterModel {
 									from votes where voter_id = voters.id
 								) as jumlahVote 
 							from voters where jumlahVote > 1 order by jumlahVote ASC;`;
+
 			db.run(sql, (err, rows) => {
 				if (err) {
 					reject(err);
@@ -101,6 +102,35 @@ class VoterModel {
 					db.all('SELECT * from fraud_people', (err, rows) => {
 						if (err) {
 							reject(err);
+						} else {
+							resolve(rows);
+						}
+					})
+				}
+			});
+		});
+	}
+
+	static findFraud() {
+		return new Promise((resolve, reject) => {
+			let db = new sqlite3.Database(dbName);
+			let sql = `Create View IF NOT EXISTS fraud_list AS
+							select voters.id, voters.gender, voters.age, 
+								voters.first_name || ' ' ||voters.last_name as full_name, votes.voter_id, votes.politician_id, 
+								count(voter_id) as jumlahVote from votes 
+									inner join voters on votes.voter_id = voters.id
+									group by votes.voter_id
+									having jumlahVote > 1
+								order by jumlahVote DESC `;
+			db.run(sql, (err, rows) => {
+				if (err) {
+					console.log(err);
+					reject(err);
+				} else {
+
+					db.all('select * from fraud_list', (err, rows) => {
+						if (err) {
+							reject({err: err, msg: 'EROR fraud'});
 						} else {
 							resolve(rows);
 						}

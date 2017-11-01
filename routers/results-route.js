@@ -18,7 +18,7 @@ router.get('/top5', (req, res) => {
 })
 
 router.get('/analyzed', (req, res) => {
-	VoterModel.findAllElectionFraud()
+	VoterModel.findFraud()
 	 .then((allFrauds) => {
 	 	res.render('result-analyzed', {frauds: allFrauds});
 	 })
