@@ -47,6 +47,18 @@ class Result{
 			})	
 		})
 	}
+
+	static getCheater(){
+		return new Promise((resolve, reject) => {
+			db.all(`select * from cheater where cheatCount > 1 order by fullname;`, (err, result)=>{
+				if(err){
+					reject(err)
+				}else{
+					resolve(result)
+				}
+			})
+		});
+	}
 }
 
 module.exports = Result

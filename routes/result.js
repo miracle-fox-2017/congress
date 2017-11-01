@@ -11,4 +11,12 @@ router.get('/top5', (req, res)=>{
 	})
 })
 
+router.get('/analyzed', (req, res)=>{
+	Model.getCheater().then(result=>{
+		let cheatCount = result.length
+		// res.send(result)
+		res.render('analyzed', {voters : result, cheatCount})
+	})
+})
+
 module.exports = router

@@ -1,0 +1,30 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Analyzed</title>
+</head>
+<body>
+<h2>There are <%=cheatCount%> persons who voted more than one</h2>
+<br>
+<table>
+	<thead>
+		<td>Name</td>
+		<td>Gender</td>
+		<td>Age</td>
+		<td>Number of Votes</td>
+	</thead>
+	<tbody>
+		<%voters.forEach(voter=>{%>
+			<tr>
+				<td><%=voter.fullname%></td>
+				<td><%=voter.gender%></td>
+				<td><%=voter.age%></td>
+				<td><%=voter.cheatCount%></td>
+			</tr>
+		<%})%>
+	</tbody>
+</table>
+
+</body>
+</html>
