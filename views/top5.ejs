@@ -17,9 +17,13 @@
       </thead>
       <% top5.forEach(top => { %>
         <tr>
-          <td align="center"><%= top.candidate_name %></td>
-          <td align="center"><%= top.total_votes %></td>
-          <td align="center"><%= top.full_name %></td>
+          <td align="center"><%= top.name %></td>
+          <td align="center"><%= top.totalVotes %></td>
+          <td align="center">
+            <% top.voter.forEach(voters => { %>
+              <p><%= voters %></p>
+            <% }) %>
+          </td>
         </tr>
       <% }) %>
     </table>

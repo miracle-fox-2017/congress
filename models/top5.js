@@ -19,11 +19,49 @@ class top5 {
       JOIN votes ON subquery.politician_id = votes.politician_id
       JOIN voters ON voters.id = votes.voter_id
       ORDER BY total_votes DESC, candidate_name DESC
-    `
+    `;
+
     return new Promise((resolve, reject) => {
       db.all(queryTop5, (err, rows) => {
         if (err) reject(err);
-        resolve(rows);
+        // const arrVotes = [];
+        // const arrVoters =  [];
+
+        // const uniqueName = [...new Set(rows.map(item => item.candidate_name))];
+        // console.log(unique);
+
+        // rows.forEach(value => {
+        //   if (arrNotName.indexOf(value.current_name) === -1) {
+        //     arrNotName.push(value.total_votes);
+        //     arrVoters.push([]);
+        //   }
+        // });
+        //{nama:a,total:32,pemilih:[b,a,c]},{nama}
+
+        let temp=[]
+        let j = 0
+        for(let i =0,n= rows.length;i<n;i++){
+          let tamp = rows[i]
+          if(i==0){
+            temp.push({name:tamp.candidate_name,totalVotes:tamp.total_votes,voter:[tamp.full_name]})
+          }
+          else{
+            for(let x = j,y=temp.length;x<y;x++){
+              let tamp2 = temp[x]
+              if(tamp2.name !== tamp.candidate_name){
+                temp.push({name:tamp.candidate_name,totalVotes:tamp.total_votes,voter:[tamp.full_name]})
+                j++
+                break;
+              }
+              else{
+                tamp2.voter.push(tamp.full_name)
+              }
+            }
+          }
+        }
+        console.log(temp);
+
+        resolve(temp);
       });
     });
   }
