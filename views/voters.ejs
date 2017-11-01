@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
+<% include ./partials/head %>
+    <title>Pencarian </title>
   </head>
   <body>
     <% include ./partials/menu %>
@@ -36,47 +33,59 @@
         }
     </script>
             <form action="/voters" method="post">
+
+              <br/>
                 <table>
-                    <tr >
+                    <tr>
                         <td>
-                            <select id="cari" onchange="show()">
-                                <option value="select">----SELECT----</option>
+                          <div class="control">
+                          <div class="select">
+                            <select id="cari" onchange="show()" required>
+                                <option value="">----SELECT----</option>
                                 <option value="name">Name</option>
                                 <option value="gender">Gender</option>
                                 <option value="age">Age</option>
                             </select>
+                          </div></div>
                         </td>
+
                     </tr>
+                    <br/>
                     <tr style="display:none;" id="tampilName">
-                        <td><input name="name" type="text" placeholder="searchName" id="tampilName" style="display:block;"></td>
+                        <td><input class="input" name="name" type="text" placeholder="searchName" id="tampilName" style="display:block;"></td>
                     </tr>
                     <tr style="display:none;" id="tampilGender">
                         <td>
+                          <div class="control">
+                            <div class="select">
                           <select id="tampilGender" name="gender">
-                                  <option value="select">----SELECT----</option>
+                                  <option value="">----SELECT----</option>
                                   <option value="female">Female</option>
                                   <option value="male">Male</option>
                           </select>
+                        </div></div>
                         </td>
                     </tr>
                     <tr style="display:none;" id="tampilAge">
-                        <td><label>Age</label></td>
-                        <td><input name="min" type="number" placeholder="Range Min Age" id="tampilAge" style="display:block;" size=20 maxlength=12 value=""></td>
-                        <td><input name="max" type="number" placeholder="Range Max Age" id="tampilAge" style="display:block;" size=20 maxlength=12 value=""></td>
+                        <td><input class="input" name="min" type="number" placeholder="Range Min Age" id="tampilAge" style="display:block;" size=20 maxlength=12 value=""></td>
+                        <td><input class="input" name="max" type="number" placeholder="Range Max Age" id="tampilAge" style="display:block;" size=20 maxlength=12 value=""></td>
                     </tr>
                 </table>
-                <br/>
-            <input type="submit" value="Search">
+                <br>
+            <input class="button is-light" type="submit" value="Search"><br/></br>
         </form>
-        <table style="width:60%">
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
           <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Married</th>
-            <th>Children Count</th>
+            <th class="is-black">Id</th>
+            <th class="is-black">Name</th>
+            <th class="is-black">Gender</th>
+            <th class="is-black">Age</th>
+            <th class="is-black">Married</th>
+            <th class="is-black">Children Count</th>
           </tr>
+          <thead>
+          <tbody>
           <%hasilCari.forEach(ketemu=>{%>
             <tr>
               <td><%=ketemu.id%></td>
@@ -91,6 +100,7 @@
               <td><%=ketemu.children_count%></td>
             </tr>
           <%})%>
+        </tbody>
         </table>
   </body>
 </html>

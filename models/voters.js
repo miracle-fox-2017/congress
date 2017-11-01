@@ -15,34 +15,39 @@ class Voters {
     });
   }
   static getValue(data){
-    console.log(data.min);
+    // console.log(data.name);
     return new Promise((resolve, reject)=>{
-     if(data.name) {
+     if(data.name !== '') {
         this.getRecordName(data.name)
           .then(data=>{
+            console.log('masuk name')
             resolve(data)
           })
             .catch(err=>{
               reject(err)
             })
-      }
-      if(data.gender) {
+      } 
+      if(data.gender !== '') {
+        // console.log(data.gender);
         this.getRecordGender(data.gender)
           .then(data=>{
+            console.log('---------------------------gender',data);
             resolve(data)
           })
             .catch(err=>{
               reject(err)
             })
       }
-       if(data.min){
+       if(data.min!==''){
         this.getRecordAge(+data.min, +data.max)
           .then(data=>{
+            //console.log('=======================================',data);
             resolve(data)
           })
             .catch(err=>{
               reject(err)
             })
+
       }
     });
   }
@@ -72,14 +77,15 @@ class Voters {
     });
   }
   static getRecordAge(min ,max){
+    console.log('masuk');
     return new Promise((resolve, reject)=> {
       let queryMinMax = `SELECT * FROM voters WHERE age >= '${min}' AND age <= '${max}' ORDER BY age`
       let queryMin = `SELECT * FROM voters WHERE age >= '${min}' ORDER BY age`
       if(max === 0){
-        console.log('masuk');
+        // console.log('masuk');
         db.all(queryMin, (err, data)=>{
           if(!err){
-            console.log('----',data);
+            // console.log('----',data);
             resolve(data)
           } else {
             reject(err)

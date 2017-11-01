@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
+  <% include ./partials/head %>
+    <title>Top 5</title>
   </head>
   <body>
     <% include ./partials/menu %>
-    <table style="width:60%">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
       <tr>
-        <th>Total Vote</th>
-        <th>Politician</th>
-        <th>Voters</th>
+        <th class="is-primary">Total Vote</th>
+        <th class="is-primary">Politician</th>
+        <th class="is-primary">Voters</th>
       </tr>
+      <thead>
+      <tbody>
       <%dataTop5.forEach(nameofTop=>{%>
         <tr>
           <td><%=nameofTop.totalvote%></td>
-          <td><%=nameofTop.politician%></td>
+          <th><%=nameofTop.politician%></th>
           <td>
             <ol>
             <%nameofTop.nameVoters.forEach(nameVoter=>{%>
@@ -25,6 +25,7 @@
           </td>
         </tr>
       <%})%>
+      <tbody>
     </table>
   </body>
 </html>
