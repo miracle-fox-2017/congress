@@ -12,7 +12,9 @@
   <% include assets/partial/top-nav %>
 
   <div class="container">
-    <div style=" margin-bottom:2px; text-align:center; color:#ff3860; font-size: 1.5em; font-weight: bold;"><%=pesanError%></div>
+    <%if(pesanError){%>
+      <div style=" margin-bottom:2px; text-align:center; color:#ff3860; font-size: 1.5em; font-weight: bold;"><%=pesanError%></div>
+    <%}%>
     <form action="/voters" method="post">
       <div class="field has-addons">
         <div class="control is-expanded">
@@ -49,30 +51,35 @@
       </div>
     </form>
 
-    <table style="margin-top:5%;" class="table is-bordered is-striped is-narrow is-fullwidth">
-      <thead>
-        <tr>
-          <th style="text-align:center;"><abbr title="totalVote">ID</abbr></th>
-          <th style="text-align:center;">NAME</th>
-          <th style="text-align:center; width:350px;">GENDER</th>
-          <th style="text-align:center; width:350px;">AGE</th>
-          <th style="text-align:center; width:350px;">MARRIED</th>
-          <th style="text-align:center; width:350px;">CHILDRENCOUNT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%for(let i=0; i<data_all_voters.length; i++){%>
-        <tr>
-          <td><%=data_all_voters[i].id%></td>
-          <td><%=data_all_voters[i].first_name%></td>
-          <td><%=data_all_voters[i].gender%></td>
-          <td><%=data_all_voters[i].age%></td>
-          <td><%=data_all_voters[i].married%></td>
-          <td><%=data_all_voters[i].children_count%></td>
-        </tr>
-        <%}%>
-      </tbody>
-    </table>
+    <%if(data_all_voters.length == 0){%>
+
+
+    <%}else{%>
+      <table style="margin-top:5%;" class="table is-bordered is-striped is-narrow is-fullwidth">
+        <thead>
+          <tr>
+            <th style="text-align:center;"><abbr title="totalVote">ID</abbr></th>
+            <th style="text-align:center;">NAME</th>
+            <th style="text-align:center; width:350px;">GENDER</th>
+            <th style="text-align:center; width:350px;">AGE</th>
+            <th style="text-align:center; width:350px;">MARRIED</th>
+            <th style="text-align:center; width:350px;">CHILDRENCOUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(let i=0; i<data_all_voters.length; i++){%>
+          <tr>
+            <td><%=data_all_voters[i].id%></td>
+            <td><%=data_all_voters[i].first_name%></td>
+            <td><%=data_all_voters[i].gender%></td>
+            <td><%=data_all_voters[i].age%></td>
+            <td><%=data_all_voters[i].married%></td>
+            <td><%=data_all_voters[i].children_count%></td>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    <%}%>
 
   </div>
 
