@@ -40,9 +40,9 @@ class Result {
                 arr[i].first_name = tampung
               }
 
-              arr[0].first_name.forEach((elemen) => {
-                console.log(elemen);
-              })
+              // arr[0].first_name.forEach((elemen) => {
+              //   console.log(elemen);
+              // })
               callback(err, arr)
             })
   }

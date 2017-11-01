@@ -4,7 +4,7 @@ var db = new sqlite3.Database('./db/congress_poll_results.db')
 class Voter {
 
   static findByName(name, callback) {
-    db.all(`SELECT * FROM voters WHERE first_name LIKE '%${name}%'`, (err, data) => {
+    db.all(`SELECT * FROM voters WHERE first_name LIKE '%${name}%' OR last_name LIKE '%${name}%'`, (err, data) => {
       callback(err, data)
     })
   }
