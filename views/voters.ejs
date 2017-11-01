@@ -53,7 +53,12 @@
       </div>
 
       <div class="col-md-12 col-xs-12" id="add">
-        <form class="" action="/voters" method="post">
+        <% if (msg){ %>
+        <div class="alert alert-danger">
+          <%= msg %>
+        </div>
+        <%}%>
+        <form class="" action="" method="post">
          <select id='pilihNama' name="pilihNama" onchange="pilihData(this)">
            <option value="">----SELECT----</option>
            <option value="name">Name</option>
@@ -85,25 +90,94 @@
       </div>
       <hr>
       <div class="col-md-12 col-xs-12" id="show">
-        <div class="" id="cariNama">
+        <% if (srcName != null){ %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">First Name</th>
+                <th class="text-center">Last Name</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Married</th>
+                <th class="text-center">Children Count</th>
+              </tr>
+            </thead>
+            <!-- tampilkan semua data contacts -->
+            <% srcName.forEach (data => { %>
+              <tbody>
+                <tr>
+                  <td class=""><%= data.id %></td>
+                  <td ><%= data.first_name %></td>
+                  <td ><%= data.last_name %></td>
+                  <td class="text-center"><%= data.gender %></td>
+                  <td class="text-center"><%= data.age %></td>
+                  <td class="text-center"><%= data.menikah %></td>
+                  <td class="text-center"><%= data.children_count %></td>
+                </tr>
+              </tbody>
+            <% }) %>
 
-        </div>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th class="text-center">Id</th>
-              <th class="text-center">First Name</th>
-              <th class="text-center">Last Name</th>
-              <th class="text-center">Gender/th>
-              <th class="text-center">Age</th>
-              <th class="text-center">Married</th>
-              <th class="text-center">Children Count</th>
-            </tr>
-          </thead>
-          <!-- tampilkan semua data contacts -->
+          </table>
+        <% } else if (srcGender != null){ %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">First Name</th>
+                <th class="text-center">Last Name</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Married</th>
+                <th class="text-center">Children Count</th>
+              </tr>
+            </thead>
+            <!-- tampilkan semua data contacts -->
+            <% srcGender.forEach (data => { %>
+              <tbody>
+                <tr>
+                  <td class=""><%= data.id %></td>
+                  <td ><%= data.first_name %></td>
+                  <td ><%= data.last_name %></td>
+                  <td class="text-center"><%= data.gender %></td>
+                  <td class="text-center"><%= data.age %></td>
+                  <td class="text-center"><%= data.menikah %></td>
+                  <td class="text-center"><%= data.children_count %></td>
+                </tr>
+              </tbody>
+            <% }) %>
 
+          </table>
+        <% } else if (srcAge != null){ %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">First Name</th>
+                <th class="text-center">Last Name</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Married</th>
+                <th class="text-center">Children Count</th>
+              </tr>
+            </thead>
+            <!-- tampilkan semua data contacts -->
+            <% srcAge.forEach (data => { %>
+              <tbody>
+                <tr>
+                  <td class=""><%= data.id %></td>
+                  <td ><%= data.first_name %></td>
+                  <td ><%= data.last_name %></td>
+                  <td class="text-center"><%= data.gender %></td>
+                  <td class="text-center"><%= data.age %></td>
+                  <td class="text-center"><%= data.menikah %></td>
+                  <td class="text-center"><%= data.children_count %></td>
+                </tr>
+              </tbody>
+            <% }) %>
 
-        </table>
+          </table>
+        <%}%>
       </div>
     </div>
   </div>
