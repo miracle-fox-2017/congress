@@ -1,0 +1,53 @@
+SELECT 
+	v.politician_id, r. name, r.vote_count, GROUP_CONCAT(vr.first_name || " " || vr.last_name) as fullname
+FROM votes as v INNER JOIN voters as vr ON v.voter_id = vr.id
+INNER JOIN (
+	SELECT 
+		v.politician_id as id,
+		cm.name,
+		COUNT(v.politician_id) as vote_count	
+	FROM votes AS v 
+	INNER JOIN congress_members AS cm ON v.politician_id = cm.id
+	 GROUP BY cm.id 
+	 ORDER BY COUNT(v.politician_id)
+	 DESC 
+	 LIMIT 5
+)as r ON v.politician_id = r.id
+GROUP BY r.id
+ORDER BY r.id
+
+SELECT 
+	v.politician_id,
+	cm.name,
+	COUNT(v.politician_id)
+FROM votes AS v 
+INNER JOIN congress_members AS cm ON v.politician_id = cm.id
+ GROUP BY cm.id 
+ ORDER BY COUNT(v.politician_id)
+ DESC 
+ LIMIT 5
+ 
+ SELECT 
+	vr.id, vr.first_name || " " || vr.last_name as fullname
+FROM votes as v
+INNER JOIN voters as vr ON v.voter_id = vr.id
+ ORDER BY v.id
+
+
+
+
+ --cari kecurangan 
+
+ SELECT  vr.first_name || " " || vr.last_name as fullname, vr.gender, vr.age , COUNT(v.voter_id)
+FROM 
+	votes as v INNER JOIN voters as vr ON v.voter_id = vr.id  
+ GROUP BY v.voter_id HAVING COUNT(*) > 1
+
+
+ --BUAT VIEW 
+
+ CREATE VIEW CHEATING AS 
+SELECT  vr.first_name || " " || vr.last_name as fullname, vr.gender, vr.age , COUNT(v.voter_id) AS count
+FROM 
+	votes as v INNER JOIN voters as vr ON v.voter_id = vr.id  
+ GROUP BY v.voter_id HAVING COUNT(*) > 1

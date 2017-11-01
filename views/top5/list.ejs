@@ -1,0 +1,29 @@
+<%-include('../partials/header.ejs')%>
+<%-include('../partials/menu.ejs')%>
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Total Vote</th>
+        <th>Politician</th>
+        <th>Voters</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<%hasil.forEach(top => {%>
+	      <tr>
+	        <td><%=top.vote_count%></td>
+	        <td><%=top.name%></td>
+	        <td><ol>
+		        <%top.voter_name.split(',').forEach(nama =>{%>
+		        	<li><%=nama%></li>
+		        <%})%>
+	        </ol></td>
+	      </tr>
+	      
+      	<%})%>
+    </tbody>
+  </table>
+
+<%-include('../partials/footer.ejs')%>
