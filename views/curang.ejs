@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>
+        Data Kecurangan
+    </title>
+</head>
+
+<body>
+
+    <head>
+        <h3>
+            There are
+            <%= dataCurang.length %> persons who voted more than one
+        </h3>
+    </head>
+    <div class="main-table">
+        <table style="border :1px solid">
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Number of Votes</th>
+            </tr>
+            <% dataCurang.forEach((curang)=>{ %>
+                <tr>
+
+                    <td>
+                        <%= curang.name%>
+                    </td>
+                    <td>
+                        <%= curang.gender%>
+                    </td>
+                    <td>
+                        <%= curang.age%>
+                    </td>
+                    <td>
+                        <%= curang.number%>
+                    </td>
+
+                </tr>
+                <% })%>
+
+        </table>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>
+        Top Five
+    </title>
+</head>
+
+<body>
+
+    <head>
+        <a href="/">Back</a>
+    </head>
+    <div class="main-table">
+        <table>
+            <tr>
+                <th>Total Vote</th>
+                <th>Politician</th>
+                <th>Voters</th>
+            </tr>
+            <%dataFive.forEach((five)=>{%>
+                <tr>
+
+                    <td>
+                        <%= five.total %>
+                    </td>
+                    <td>
+                        <%= five.name %>
+                    </td>
+                    <td>
+                        <ol>
+                            <% five.name_voters.forEach((voter)=>{%>
+                                <li>
+                                    <%= voter%>
+                                </li>
+                                <% })%>
+
+                        </ol>
+
+                    </td>
+                </tr>
+                <% })%>
+        </table>
+    </div>
+</body>
+
+</html>
