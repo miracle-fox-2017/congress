@@ -45,44 +45,29 @@ class Votes
   
   static getAgeRange(minAge, maxAge = null)
   {
-    if (maxAge === null)
-    {
-      db.all(`SELECT * FROM voters WHERE age = ${minAge}`, (err, rows) =>
+    return new Promise(function(resolve, reject)
+      {
+        let query = ``;
+        if (maxAge === null)
         {
-          return new new Promise(function(resolve, reject)
-            {
-              if (err)
-              {
-                reject(err);
-              }
-              else
-              {
-                resolve(rows);
-              }
-            }
-          );
+          query = `SELECT * FROM voters WHERE age = ${minAge}`;
         }
-      );
-    }
-    else
-    {
-      db.all(`SELECT * FROM voters WHERE age BETWEEN ${minAge} AND ${maxAge}`, (err, rows) =>
+        else
         {
-          return new Promise(function(resolve, reject)
-            {
-              if (err)
-              {
-                reject(err);
-              }
-              else
-              {
-                resolve(rows);
-              }
-            }
-          );
+          query = `SELECT * FROM voters WHERE age BETWEEN ${minAge} AND ${maxAge}`;
         }
-      );
-    }
+        db.all(query, (err, rows) => {
+          if (err)
+          {
+            reject(err);
+          }
+          else
+          {
+            resolve(rows);
+          }
+        })
+      }
+    );
   }
   
   static getTop5()

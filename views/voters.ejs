@@ -57,7 +57,32 @@
       }
     </script>
     
-    
+    <table>
+      <thead>
+        <tr>
+          <td>id</td>
+          <td>first_name</td>
+          <td>last_name</td>
+          <td>gender</td>
+          <td>age</td>
+          <td>married</td>
+          <td>children_count</td>
+        </tr>
+      </thead>
+      <tbody>
+        <%rows.forEach((row) => {%>
+        <tr>
+        <td><%=row.id%></td>
+        <td><%=row.first_name%></td>
+        <td><%=row.last_name%></td>
+        <td><%=row.gender%></td>
+        <td><%=row.age%></td>
+        <td><%=row.married%></td>
+        <td><%=row.children_count%></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
   </body>
   
   

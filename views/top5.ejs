@@ -5,18 +5,20 @@
     <title>Top 5</title>
   </head>
   <body>
-    <table>
+    <table border="1">
       <thead>
-        <td><th>Total Vote</th></td>
-        <td><th>Politician</th></td>
-        <td><th>Voters</th></td>
+        <th>Total Vote</th>
+        <th>Politician</th>
+        <th>Voters</th>
       </thead>
       <tbody>
         <%for (let i = 0; i < candidatesObj.length; i++) { %>
           <tr>
           <td><%=candidatesObj[i].numVotes%></td>
           <td><%=candidatesObj[i].candidate%></td>
-          <td><%=candidatesObj[i].voters%></td>
+          <td><ol><%for (let j = 0; j < candidatesObj[i].voters.length; j++) {%>
+            <li><%=candidatesObj[i].voters[j]%></li>
+          <%}%></ol></td>
           </tr>
         <%}%>
       </tbody>
