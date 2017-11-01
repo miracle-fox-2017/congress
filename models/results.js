@@ -12,7 +12,7 @@ class Result {
                   limit 5) as poll
                   inner join votes on votes.politician_id = poll.id
                   inner join voters on votes.voter_id = voters.id
-                  order by voting, voters.first_name desc`
+                  order by voting desc`
 
       db.all(query, function(err ,rows) {
         if (!err) {

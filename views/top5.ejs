@@ -60,15 +60,20 @@
               </tr>
             </thead>
             <!-- tampilkan semua data contacts -->
-            <% rows.forEach (data => { %>
+            <%for(let j = 0; j < names.length; j++){%>
+              <%let index = 1%>
               <tbody>
                 <tr>
-                  <td class="text-center"><%= data.voting %></td>
-                  <td><%= data.name %></td>
-                  <td><%= data.first_name %></td>
+                  <td><%=votes[j]%></td>
+                  <td><%=names[j]%></td>
+                  <td><%for(let k = 0; k < first[j].length; k++){%>
+                        <%=index%>.<%=first[j][k]%><br>
+                        <%index++%>
+                      <%}%>
+            <%}%>
+                  </td>
                 </tr>
               </tbody>
-            <% }) %>
 
           </table>
         </div>
