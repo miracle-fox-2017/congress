@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>voters</title>
+  </head>
+  <body>
+    <h2>voters</h2>
+    <tbody>
+        <table>
+            <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>gender</th>
+          </tr>
+          <tr>
+            <%for(var i=0;i < data.length;i++){%>
+            <td><%= data[i].first_name %></td>
+            <td><%= data[i].last_name %></td>
+            <td><%= data[i].gender %></td>
+            <%}%>
+          </tr>
+
+        </table>
+      </tbody>
+    </table>
+  </body>
+</html>
