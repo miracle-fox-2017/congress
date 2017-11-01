@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Top 5 Results</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate Name</th>
+          <th>Total Votes</th>
+          <th>Voter Name</th>
+        </tr>
+      </thead>
+      <% top5.forEach(top => { %>
+        <tr>
+          <td align="center"><%= top.name %></td>
+          <td align="center"><%= top.totalVotes %></td>
+          <td align="center">
+            <% top.voter.forEach(voters => { %>
+              <p><%= voters %></p>
+            <% }) %>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

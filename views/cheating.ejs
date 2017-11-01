@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Analyze Cheating</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Gender</td>
+          <td>Age</td>
+          <td>Number Of Vote</td>
+        </tr>
+      </thead>
+      <% cheating.forEach(value => { %>
+        <tr>
+          <td><%= value.name %></td>
+          <td><%= value.gender %></td>
+          <td><%= value.age %></td>
+          <td><%= value.Number %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
