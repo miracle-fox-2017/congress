@@ -1,0 +1,28 @@
+create VIEW total_vote AS
+SELECT COUNT (votes.politician_id), congress_members.name, congress_members.id
+FROM votes
+INNER JOIN congress_members ON congress_members.id = votes.politician_id
+GROUP BY congress_members.name, congress_members.id
+
+
+
+SELECT COUNT (votes.politician_id), congress_members.name, congress_members.id
+FROM votes
+INNER JOIN congress_members ON congress_members.id = votes.politician_id
+GROUP BY congress_members.name, congress_members.id
+ORDER BY COUNT(votes.politician_id) desc
+limit 5
+
+
+SELECT  v.total_v, v.name, voters.first_name
+FROM
+	(SELECT COUNT (votes.politician_id) as total_v, congress_members.name, congress_members.id
+	FROM votes
+	INNER JOIN congress_members ON congress_members.id = votes.politician_id
+	GROUP BY congress_members.name, congress_members.id
+	ORDER BY COUNT(votes.politician_id) desc
+	limit 5)
+AS V
+INNER JOIN votes ON votes.politician_id = v.id
+INNER JOIN voters ON voters.id = votes.voter_id
+order by v.total_v desc, v.name asc

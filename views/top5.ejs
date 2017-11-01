@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#voters {
+    margin-top: 70px;
+    margin-left: 20px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+#voters td, #voters th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#voters tr:nth-child(even){background-color: #f2f2f2;}
+
+#voters tr:hover {background-color: #ddd;}
+
+#voters th {
+
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+<h1 style="font-family:sans-serif">TOP 5 Politicians</h1>
+
+ </form>
+
+ <table id="voters">
+   <tr>
+     <th>TOTAL VOTE</th>
+     <th>Politician</th>
+     <th>Voters</th>
+   </tr>
+
+   <%for(let i =0; i < rows.length; i++){%>
+   <tr>
+     <td><%=rows[i].total_v%></td>
+     <td><%=rows[i].name%></td>
+     <td>
+      <ol>
+     <%rows[i].first_name.forEach(data =>{%>
+       <li><%=data%></li>
+     <%})%>
+    </ol>
+ </td>
+ <%}%>
+
+   </tr>
+
+
+
+
+
+</table>
+
+</body>
+</html>
