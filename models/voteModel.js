@@ -5,40 +5,38 @@ class Votes
 {
   static getByGender(gender)
   {
-    db.all(`SELECT * FROM voters WHERE gender = "${gender}"`, (err, rows) =>
+    let query = `SELECT * FROM voters WHERE gender = "${gender}"`;
+    return new Promise((resolve, reject) =>
       {
-        return new Promise((resolve, reject) =>
+        db.all(query, (err, rows) => {
+          if (err)
           {
-            if (err)
-            {
-              reject(err);
-            }
-            else
-            {
-              resolve(rows);
-            }
+            reject(err);
           }
-        )
+          else
+          {
+            resolve(rows);
+          }
+        })
       }
-    );
+    )
   }
   
   static getByName(name)
   {
-    db.all(`SELECT * FROM voters WHERE first_name LIKE "%name%"`, (err, rows) =>
+    let query = `SELECT * FROM voters WHERE first_name LIKE "%name%"`;
+    return new new Promise((resolve, reject) =>
       {
-        return new new Promise((resolve, reject) =>
+        db.all(query, (err, rows) =>{
+          if (err)
           {
-            if (err)
-            {
-              reject(err);
-            }
-            else
-            {
-              resolve(rows)
-            }
+            reject(err);
           }
-        );
+          else
+          {
+            resolve(rows)
+          }
+        })
       }
     );
   }
