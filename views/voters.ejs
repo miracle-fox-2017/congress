@@ -36,6 +36,11 @@
 
 </script>
 <body>
+    <% if(err !== null){ %>
+        
+        <%= err.err %>
+        
+    <% } %>
     <ul>
         <li><a href="/"> HOME</a></li>
         <li><a href="/results/top5"> TOP 5</a></li>

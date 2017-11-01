@@ -4,7 +4,8 @@ const Vote = require('../models/voters');
 
 router.get('/voters', function (req, res) {
     let isEdit = { isEdit : false };
-    res.render('voters', { isEdit });
+    let err = { err: null };
+    res.render('voters', { isEdit, err });
 });
 
 router.post('/voters', function (req, res) {
@@ -13,12 +14,15 @@ router.post('/voters', function (req, res) {
     }
     if (req.body.get == 1){
         if (set.name == ''){
-            res.redirect('voters');
+            let isEdit = { isEdit: false };
+            let err = { err: "data Kosong" };
+            res.render('voters', { isEdit, err });
         }else{
             Vote.findName(set).then((dataName) => {
                 // let set = { name : "name" };
                 let isEdit = { isEdit: true };
-                res.render('voters', { dataName, isEdit });
+                let err = { err: null };
+                res.render('voters', { dataName, isEdit, err });
             }).catch((err) => {
 
             })
@@ -26,12 +30,15 @@ router.post('/voters', function (req, res) {
         
     } else if (req.body.get == 2){
         if (set.name==0){
-            res.redirect('voters');
+            let isEdit = { isEdit: false };
+            let err = { err: "pilih datanya" };
+            res.render('voters', { isEdit, err });
         } else if (set.name == 1){
             Vote.findGender(set).then((dataName) => {
                 // let set = { name : "name" };
                 let isEdit = { isEdit: true };
-                res.render('voters', { dataName, isEdit });
+                let err = { err: null };
+                res.render('voters', { dataName, isEdit, err });
             }).catch((err) => {
 
             })
@@ -39,7 +46,8 @@ router.post('/voters', function (req, res) {
             Vote.findGender(set).then((dataName) => {
                 // let set = { name : "name" };
                 let isEdit = { isEdit: true };
-                res.render('voters', { dataName, isEdit });
+                let err = { err: null };
+                res.render('voters', { dataName, isEdit, err });
             }).catch((err) => {
 
             })
