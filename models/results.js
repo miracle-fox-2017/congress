@@ -62,6 +62,32 @@ class Result {
     })
   }
   
+  static analyzer(){
+    return new Promise((resolve, reject)=>{
+      let createViewVoters = `CREATE VIEW IF NOT EXISTS VoterCount AS
+                              SELECT votes.voter_id, COUNT(*) as count
+                              FROM votes
+                              GROUP BY votes.voter_id`
+      db.run(createViewVoters, [], ()=>{
+        let queryCheated = `SELECT VoterCount.counts, VoterCount.voter_id,
+                                   voters.first_name  || ' ' || voters.last_name AS fullname,
+                                   voters.gender, voters.age
+                            FROM VoterCount
+                            JOIN voters ON VoterCount.voter_id = voters.id
+                            WHERE VoterCount.counts > 1
+                            ORDER BY fullname ASC, VoterCount.counts ASC`
+        db.all(queryCheated, (err,rows)=>{
+          if(err){
+            reject(err)
+          }else{
+            resolve(rows)
+          }
+        })
+      })
+
+      
+    })
+  }
   
 }
 
