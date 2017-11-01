@@ -54,8 +54,6 @@ class Result {
                 }
               }
             }
-          // console.log(resultVoters[4]);
-          
           resolve(resultVoters)
         }
       })
