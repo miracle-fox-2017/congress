@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Voter Page</title>
+  </head>
+  <body>
+    <% if(error) { %>
+      <h2 style="color: red"><%= error %></h2>
+    <% } %>
+
+
+    <form action="/voters" method="post">
+      <select id='searchBy' name="searchBy" onchange="myFunction(this)">
+        <option value="">--Select--</option>
+        <option value="name">Name</option>
+        <option value="gender">Gender</option>
+        <option value="age">Age</option>
+      </select>
+      <br>
+
+      <div id="searchName" style="display: none">
+        <input type="text" name="searchName" placeholder="Search Name">
+      </div>
+
+      <div id="searchGender" style="display: none">
+        <select name="searchGender">
+          <option value="">--Select--</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <div id="searchAge" style="display: none">
+        <input type="text" name="minAge" placeholder="Range Min Age">
+        <input type="text" name="maxAge" placeholder="Range Max Age">
+      </div>
+      <br>
+
+      <div>
+        <button type="submit">Search</button>
+      </div>
+    </form>
+    <br>
+
+    <% if(dataVoter) { %>
+      <table border="1px">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>gender</th>
+            <th>age</th>
+            <th>married</th>
+            <th>children_count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% dataVoter.forEach(data => { %>
+            <tr>
+              <td><%= data.id %></td>
+              <td><%= data.first_name %></td>
+              <td><%= data.last_name %></td>
+              <td><%= data.gender %></td>
+              <td><%= data.age %></td>
+              <td><%= data.married_stats %></td>
+              <td><%= data.children_count %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+
+  </body>
+  <script>
+    function myFunction(click) {
+      if(click.value === 'null') {
+        document.getElementById('searchName').style.display = "none";
+        document.getElementById('searchGender').style.display = "none";
+        document.getElementById('searchAge').style.display = "none";
+      } else if(click.value === 'name') {
+        document.getElementById('searchName').style.display = "block";
+        document.getElementById('searchGender').style.display = "none";
+        document.getElementById('searchAge').style.display = "none";
+      } else if(click.value === 'gender') {
+        document.getElementById('searchName').style.display = "none";
+        document.getElementById('searchGender').style.display = "block";
+        document.getElementById('searchAge').style.display = "none";
+      } else if(click.value === 'age') {
+        document.getElementById('searchName').style.display = "none";
+        document.getElementById('searchGender').style.display = "none";
+        document.getElementById('searchAge').style.display = "block";
+      }
+    }
+  </script>
+</html>

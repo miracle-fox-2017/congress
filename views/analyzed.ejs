@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Polling Congres</title>
+  </head>
+  <body>
+    <h1>There are <%= dataAnalyzed.length %> persons who voted more than one</h1>
+    <table border="1px">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Number of Votes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dataAnalyzed.forEach(data => { %>
+          <tr>
+            <td><%= data.Name %></td>
+            <td><%= data.gender %></td>
+            <td><%= data.age %></td>
+            <td><%= data.VoterCount %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>
