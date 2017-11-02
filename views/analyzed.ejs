@@ -1,0 +1,38 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>There are <%=rowsAnalyzed.length%> people with duplicate votes</h1>
+    <table border ="1">
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                Gender
+            </td>
+            <td>
+                Age
+            </td>
+            <td>
+                Number of Votes
+            </td>
+
+        </tr>
+        <tr>
+            <%rowsAnalyzed.forEach(rows=>{%>
+                <td><%=rows.first_name%></td>
+                <td><%=rows.gender%></td>
+                <td><%=rows.age%></td>
+                <td><%=rows.VotesCount%></td>
+            
+        </tr>
+        <%})%>
+    </table>
+
+</body>
+
+</html>
