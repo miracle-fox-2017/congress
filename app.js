@@ -28,7 +28,7 @@ app.use('/results', results)
 
 //Voters Page
 
-// app.use('/voters',voters)
+app.use('/voters',voters)
 
 
 

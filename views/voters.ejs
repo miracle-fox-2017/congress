@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            
-        </title>
 
-    </head>
-    <body>
-        <h1>Voters</h1>
-    </body>
+<head>
+    <title>
+
+    </title>
+
+</head>
+
+<body>
+    <h1>Voters</h1>
+    <select name="voters" onchange="myFunction(this)">
+                <option value="">---SELECT---</option>
+                <option value="name">Name</option>
+                <option value="age">Age</option>
+                <option value="gender">Gender</option>
+                
+
+              </select><br>
+    <input type="text" id="searchName" placeholder="insert name">
+    >
+    <input type="submit" value="Search">
+
+</body>
+<script>
+    function myFunction(self) {
+        console.log(self.value)
+        if (self.value === 'name') {
+            document.getElementById('searchName').style.visibility = "hidden";
+            // document.getElementById('searchGender').style.display = "none";
+            // document.getElementById('searchAge').style.display = "none";
+        // } else if (self.value === 'gender') {
+        //     document.getElementById('searchGender').style.display = "block";
+        //     document.getElementById('searchName').style.display = "none";
+        //     document.getElementById('searchAge').style.display = "none";
+        // } else if (self.value === 'age') {
+        //     document.getElementById('searchAge').style.display = "block";
+        //     document.getElementById('searchName').style.display = "none";
+        //     document.getElementById('searchGender').style.display = "none";
+        }
+    };
+</script>
+
 </html>

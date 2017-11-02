@@ -11,4 +11,10 @@ router.get('/top5',(req,res)=>{
     })
 })
 
+router.get('/analyzed',(req,res)=>{
+    Result.analyze(rows=>{
+        res.render('analyzed',{rowsAnalyzed:rows})
+    })
+})
+
 module.exports = router;
