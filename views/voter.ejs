@@ -6,7 +6,7 @@
   </head>
   <body>
     <% if(error) { %>
-      <h2 style="color: red">Please fill the blank</h2>
+      <h2 style="color: red"><%= error %></h2>
     <% } %>
 
 
@@ -64,7 +64,7 @@
               <td><%= data.last_name %></td>
               <td><%= data.gender %></td>
               <td><%= data.age %></td>
-              <td><%= data.married %></td>
+              <td><%= data.married_stats %></td>
               <td><%= data.children_count %></td>
             </tr>
           <% }) %>
