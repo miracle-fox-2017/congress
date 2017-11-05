@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>Vote Count</th>
+      <th>Congress Member Name</th>
+      <th>Voters Name</th>
+    </tr>
+    <% for (let i = 0; i < dataJsonTopFive.length; i++){%>
+      <tr>
+        <td><%= dataJsonTopFive[i].voteCount %></td>
+        <td><%= dataJsonTopFive[i].memberName %></td>
+        <% for (let y = 0; y < dataJsonVoters.length; y++){%>
+          <% if (dataJsonVoters[y].id ) %>
+        <% } %>
+      </tr>
+    <% } %>
+  </table>
+</body>
+</html>
