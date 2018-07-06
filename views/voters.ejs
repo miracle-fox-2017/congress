@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/css/bulma.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Congress - Voters</title>
+</head>
+<body>
+  <% include assets/partial/top-nav %>
+
+  <div class="container">
+    <%if(pesanError){%>
+      <div style=" margin-bottom:2px; text-align:center; color:#ff3860; font-size: 1.5em; font-weight: bold;"><%=pesanError%></div>
+    <%}%>
+    <form action="/voters" method="post">
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+
+            <select id="searchBy" name="options" onchange="myFunction(this)">
+              <option value="select">---select---</option>
+              <option value="name">name</option>
+              <option value="gender">gender</option>
+              <option value="age">age</option>
+            </select>
+
+          </div>
+        </div>
+
+        <div id="searchName" style="display: none;">
+          <input class="input" type="text" name="searchName" placeholder="Search Name">
+        </div>
+        <div class="select" id="searchGender" style="display: none;">
+          <select name="searchGender">
+            <option value="">----SELECT----</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+          <div id="searchAge" style="display: none;">
+          <input class="input" type="text" name="searchStartAge" placeholder="Range Min Age">
+          <input class="input" type="text" name="searchEndAge" placeholder="Range Max Age">
+        </div>
+
+        <div class="control">
+          <button type="submit" class="button is-primary">SEARCH</button>
+        </div>
+      </div>
+    </form>
+
+    <%if(data_all_voters.length == 0){%>
+
+
+    <%}else{%>
+      <table style="margin-top:5%;" class="table is-bordered is-striped is-narrow is-fullwidth">
+        <thead>
+          <tr>
+            <th style="text-align:center;"><abbr title="totalVote">ID</abbr></th>
+            <th style="text-align:center;">NAME</th>
+            <th style="text-align:center; width:350px;">GENDER</th>
+            <th style="text-align:center; width:350px;">AGE</th>
+            <th style="text-align:center; width:350px;">MARRIED</th>
+            <th style="text-align:center; width:350px;">CHILDRENCOUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(let i=0; i<data_all_voters.length; i++){%>
+          <tr>
+            <td><%=data_all_voters[i].id%></td>
+            <td><%=data_all_voters[i].first_name%></td>
+            <td><%=data_all_voters[i].gender%></td>
+            <td><%=data_all_voters[i].age%></td>
+            <td><%=data_all_voters[i].married%></td>
+            <td><%=data_all_voters[i].children_count%></td>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    <%}%>
+
+  </div>
+
+<script>
+
+    function myFunction(self) {
+        if(self.value === 'name') {
+          document.getElementById('searchName').style.display = "block";
+          document.getElementById('searchGender').style.display = "none";
+          document.getElementById('searchAge').style.display = "none";
+        } else if(self.value === 'gender') {
+          document.getElementById('searchGender').style.display = "block";
+          document.getElementById('searchName').style.display = "none";
+          document.getElementById('searchAge').style.display = "none";
+        } else if(self.value === 'age') {
+          document.getElementById('searchAge').style.display = "block";
+          document.getElementById('searchName').style.display = "none";
+          document.getElementById('searchGender').style.display = "none";
+        } else if(self.value === 'select') {
+          document.getElementById('searchAge').style.display = "none";
+          document.getElementById('searchName').style.display = "none";
+          document.getElementById('searchGender').style.display = "none";
+        }
+    }
+
+</script>
+</body>
+</html>
