@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VOTERS</title>
+</head>
+<body>
+
+<% if(message != undefined){%>
+	<h1><%= message %>	</h1>	
+<%}%>
+<a href="/">BACK</a>
+<form id="formSelect" action="/voters" method="post" >
+	<select id="mySelect" onchange="onChange()">
+		<option value="select">----SELECT----</option>
+  		<option value="name" onclick="" value="name">name</option>
+  		<option value="gender">gender</option>
+  		<option value="age">age</option>
+	</select>
+	<div id="searchName" style="display: none">
+		<input type="text" name="searchName" placeholder="Search Name">
+	</div>
+
+	<div id="searchGender" style="display: none">
+		<select id="gender" name ="gender">
+			<option>----SELECT----</option>
+  			<option value="male" onclick="">Male</option>
+  			<option value="female">Female</option>
+		</select>	
+	</div>
+
+	<div id="age" style="display: none">
+		<input type="text" name="minAge" placeholder="Range Min Age"> 
+		<input type="text" name="maxAge" placeholder="Range Max Age">
+	</div>
+ 
+	<div>
+		<input type="submit" value="SEARCH">
+	</div>
+</form>
+
+<% if(search != undefined) {%>
+ 	
+ 		<table width="50%" border="1">	
+		<thead align ="center">
+			  <tr>		
+			  	 <th> ID </th>
+    			 <th> first_name </th>
+    			 <th> last_name </th>
+    			 <th> gender </th>
+    			 <th> age </th>
+    			 <th> married </th>	
+    			 <th> children_count </th>
+  			  </tr>
+		</thead>
+		<tbody align ="center">	
+			<% for (let i = 0 ; i < search.length ; i++){%>
+			<tr>
+				<td> <%= search[i].id %> </td>
+				<td> <%= search[i].first_name %> </td>
+		  		<td> <%= search[i].last_name %>  </td>
+		  		<td> <%= search[i].gender %>  </td>
+		  		<td> <%= search[i].age %>  </td>
+		  		<td> <%= search[i].married %>  </td>
+		  		<td> <%= search[i].children_count %>  </td>
+			</tr>
+			<%}%>
+		</tbody>			
+<%}%>
+	<script type="text/javascript">
+		function onChange(){
+			let change = document.getElementById("mySelect").value;
+			if(change == "name"){
+			document.getElementById('searchName').style.display = "block";	
+			document.getElementById('searchGender').style.display = "none";	
+			document.getElementById('age').style.display = "none";	
+			}
+			if(change == "gender"){
+			document.getElementById('searchGender').style.display = "block";
+			document.getElementById('searchName').style.display = "none";	
+			document.getElementById('age').style.display = "none";		
+			}	
+			if(change == "age"){
+			document.getElementById('age').style.display = "block";	
+			document.getElementById('searchName').style.display = "none";	
+			document.getElementById('searchGender').style.display = "none";	
+			}
+			if(change == "select"){
+			document.getElementById('age').style.display = "none";	
+			document.getElementById('searchName').style.display = "none";	
+			document.getElementById('searchGender').style.display = "none";					
+			}						
+		}
+	</script>
+</body>
+</html>

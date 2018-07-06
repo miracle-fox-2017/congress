@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>KECURANGAN</title>
+</head>
+<body>
+<a href="/">BACK</a>
+
+<h1>There are <%= kecurangan.length %> who voted more than one</h1>
+
+<table width="50%" border="1">	
+		<thead align ="center">
+			  <tr>		
+			  	 <th> NAME </th>
+    			 <th> GENDER </th>
+    			 <th> AGE </th>
+    			 <th> Number of Votes </th>
+  			  </tr>
+		</thead>
+<% for (let i = 0 ; i < kecurangan.length ; i++){%>
+		<tbody align ="center">	
+			<tr>
+				<td> <%= kecurangan[i].Name %> </td>
+				<td> <%= kecurangan[i].gender %> </td>
+		  		<td> <%= kecurangan[i].age %>  </td>
+		  		<td> <%= kecurangan[i].NumberofVotes %>  </td>
+			</tr>
+<%}%>
+		</tbody>	
+
+</body>
+</html>

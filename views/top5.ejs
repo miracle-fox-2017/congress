@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TOP5</title>
+</head>
+<body>
+<a href="/">BACK</a>
+
+
+
+<table width="50%" border="1">	
+		<thead align ="center">
+			  <tr>		
+			  	 <th> Total Vote </th>
+    			 <th> Politician </th>
+    			 <th> Voters </th>
+  			  </tr>
+		</thead>
+
+		<tbody align ="center">	
+		<% for (let i = 0 ; i < total.length ; i++){%>		
+			<tr>
+				<td> <%= total[i] %> </td>
+				<td> <%= politician[i] %> </td>
+				<td><%voter[i].map((value)=>{%>
+					<li style="list-style: decimal;"><%=value%></li>
+					<%})%>
+				</td>
+
+			</tr>	
+		<%}%>
+
+		</tbody>	
+
+</body>
+</html>
