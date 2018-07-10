@@ -1,0 +1,32 @@
+<%-include('../partials/header.ejs')%>
+<%-include('../partials/menu.ejs')%>
+
+
+
+<div class="container">
+<h1><b>There are <%=hasil.length%> persons who voted more than one</b></h1> 
+<br>   
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%hasil.forEach( nama =>{%>
+      <tr>
+        <td><%=nama.fullname%></td>
+        <td><%=nama.gender%></td>
+        <td><%=nama.age%></td>
+        <td><%=nama.count%></td>
+      </tr>
+    <%})%>
+    </tbody>
+  </table>
+</div>
+
+
+<%-include('../partials/footer.ejs')%>

@@ -1,0 +1,105 @@
+<%-include('../partials/header.ejs')%>
+<%-include('../partials/menu.ejs')%>
+
+<%if(error){%>
+ 		<br>
+		 <div class="alert alert-warning">
+		  	<strong>Warning!</strong> <%=error%>
+		</div>
+	<%}%>
+
+<form action="/voters" method="post">
+	<label for="sel1">Search</label>
+	  <select class="form-control" name="searchName" onchange="myFunction(this)" style="width:150px;">
+	  	<option value="default">----SELECT----</option>
+	    <option value="name">Name</option>
+	    <option value="gender">Gender</option>
+	    <option value="age">Age</option>
+	  </select>
+  
+  	<div id="searchName" style="display: none;">
+        <input type="text" name="searchName" placeholder="Search Name">
+    </div>
+
+    <div id="searchGender" style="display: none;">
+	      <select class="form-control" id="searchGender" name="searchGender" style="width:150px;">
+		  	<option value="default">----SELECT----</option>
+		    <option value="male">Male</option>
+		    <option value="female">Female</option>
+		  </select>
+    </div>
+
+    <div id="searchAge" style="display: none;">
+        <input type="text" name="searchAge" placeholder="Range Min Age">
+        <input type="text" name="searchAge" placeholder="Range Max Age">
+    </div>
+    <br>
+
+    <div>
+        <button type="submit">SEARCH</button>
+      </div>
+ </form>
+
+ <%if(!isNull && !error){%>
+
+		<div class="container">
+		  <h2>Voters Data</h2>     
+		  <table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Id</th>
+		        <th>Firstname</th>
+		        <th>Lastname</th>
+		        <th>Gender</th>
+		        <th>Age</th>
+		        <th>Married</th>
+		        <th>Children Count</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+			    <%nama.forEach( name => {%>
+			      <tr>
+			        <td><%=name.id%></td>
+			        <td><%=name.first_name%></td>
+			        <td><%=name.last_name%></td>
+			        <td><%=name.gender%></td>
+			        <td><%=name.age%></td>
+			        <td><%=name.married == 0 ? 'Single' : 'Married'%></td>
+			        <td><%=name.children_count%></td>
+			      </tr>
+			    <%})%>
+		    </tbody>
+		  </table>
+		</div>
+ <%}%>
+ 	
+ 	
+
+
+<script>
+function myFunction(tes) {
+
+    if(tes.value == 'name'){
+    	document.getElementById("searchName").style.display = "block"
+    	document.getElementById("searchGender").style.display = "none"
+    	document.getElementById("searchAge").style.display = "none"
+    }
+    else if(tes.value == 'gender'){
+    	document.getElementById("searchGender").style.display = "block"
+    	document.getElementById("searchName").style.display = "none"
+    	document.getElementById("searchAge").style.display = "none"
+    }
+    else if(tes.value == 'age'){
+    	document.getElementById("searchAge").style.display = "block"
+    	document.getElementById("searchGender").style.display = "none"
+    	document.getElementById("searchName").style.display = "none"
+    }
+    else{
+    	document.getElementById("searchAge").style.display = "none"
+    	document.getElementById("searchGender").style.display = "none"
+    	document.getElementById("searchName").style.display = "none"
+    }
+}
+</script>
+
+<%-include('../partials/footer.ejs')%>
